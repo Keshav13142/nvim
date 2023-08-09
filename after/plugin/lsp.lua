@@ -25,16 +25,6 @@ end
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
 
--- no mason
--- require('lspconfig').lua_ls.setup {
---     on_attach = on_attach,
---     capabilities = capabilities,
---     Lua = {
---       workspace = { checkThirdParty = false },
---       telemetry = { enable = false },
---     },
--- }
-
 -- mason
 require("mason").setup()
 require("mason-lspconfig").setup_handlers({
