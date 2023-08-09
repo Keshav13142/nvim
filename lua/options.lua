@@ -2,17 +2,11 @@
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
--- Disable netrw
--- vim.g.loaded_netrwPlugin = 1
--- vim.g.loaded_netrw = 1
-
--- General
+-- If ripgrep installed, use that as a grepper
 local fn = vim.fn
 if fn.executable("rg") then
-	-- if ripgrep installed, use that as a grepper
 	vim.opt.grepprg = "rg --vimgrep --no-heading"
 	vim.opt.grepformat = "%f:%l:%c:%m,%f:%l:%m"
-	-- create autocmd to automatically open quickfix window when grepping
 	vim.cmd([[autocmd QuickFixCmdPost [^l]* nested cwindow]])
 end
 

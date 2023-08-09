@@ -14,8 +14,6 @@ local function imap(key, map)
 	keymap("i", key, map, opts)
 end
 
-keymap({ "n", "v" }, "<Space>", "<Nop>", { noremap = true, expr = true, silent = true })
-
 -- move lines up and down
 vmap("J", ":m '>+1<CR>gv=gv")
 vmap("K", ":m '<-2<CR>gv=gv")
@@ -41,7 +39,7 @@ nmap("<leader><leader>", ":so<CR>")
 imap("<C-c>", "<Esc>")
 
 -- Open netrw
-nmap("<leader>e", ":NvimTreeToggle<CR>")
+nmap("<leader>e", ":Ex<CR>")
 
 -- Ctrl+s to save
 keymap({ "i", "v", "n", "s" }, "<C-s>", ":w<CR><esc>")
@@ -113,6 +111,7 @@ nmap("<leader>sf", telescope.find_files)
 nmap("<leader>sh", telescope.help_tags)
 nmap("<leader>sg", telescope.live_grep)
 nmap("<leader>sd", telescope.diagnostics)
+nmap("<leader>sb", telescope.git_branches)
 
 -- Lsp
 local dg = vim.diagnostic
@@ -137,8 +136,7 @@ end)
 nmap("<leader>gk", function()
 	gs.prev_hunk({ navigation_message = false })
 end)
-nmap("<leader>gl", gs.blame_line)
-nmap("<leader>gb", telescope.git_branches)
+nmap("<leader>gb", gs.blame_line)
 
 -- Bufferline
 nmap("<S-h>", ":BufferLineCyclePrev<CR>")
