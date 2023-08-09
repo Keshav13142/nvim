@@ -1,6 +1,10 @@
 require("nvim-treesitter.configs").setup({
 	auto_install = true,
 	highlight = { enable = true },
+	sync_install = false,
+	autopairs = {
+		enable = true,
+	},
 	indent = { enable = true },
 	ensure_installed = {
 		"bash",
@@ -24,5 +28,9 @@ require("nvim-treesitter.configs").setup({
 		"tsx",
 		"typescript",
 		"yaml",
+	},
+	context_commentstring = {
+		enable = true,
+		enable_autocmd = false,
 	},
 })
