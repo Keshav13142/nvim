@@ -56,7 +56,7 @@ au("BufEnter", {
 	group = opt_group,
 })
 
--- open telescope on startup
+-- open telescope on startup (Only works when netrw is disabled)
 local ts_group = augroup("telescope")
 au("VimEnter", {
 	callback = function()
@@ -69,17 +69,6 @@ au("VimEnter", {
 	end,
 	group = ts_group,
 })
-
--- au( "VimEnter" , {
---   callback = function()
---     local first_arg = vim.v.argv[3]
---     if first_arg and vim.fn.isdirectory(first_arg) == 1 then
---       vim.cmd(":bd 1")
---       require("telescope.builtin").find_files({ search_dirs = { first_arg } })
---     end
---   end,
---   group = ts_group,
--- })
 
 -- Trim extra stuff
 au({ "BufWritePre" }, {

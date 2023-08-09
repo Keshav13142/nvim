@@ -1,52 +1,252 @@
-local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
-if not vim.loop.fs_stat(lazypath) then
-	vim.fn.system({
-		"git",
-		"clone",
-		"--filter=blob:none",
-		"https://github.com/folke/lazy.nvim.git",
-		"--branch=stable", -- latest stable release
-		lazypath,
-	})
-end
-vim.opt.rtp:prepend(lazypath)
+return {
+	"mhinz/vim-startify",
+	"kosayoda/nvim-lightbulb",
+	"folke/neodev.nvim",
+	"folke/zen-mode.nvim",
+	"tpope/vim-unimpaired",
+	"tpope/vim-repeat",
+	"tpope/vim-speeddating",
+	"tpope/vim-sleuth",
+	"mg979/vim-visual-multi",
+	"sainnhe/gruvbox-material",
+	"ThePrimeagen/vim-be-good",
+	"mrjones2014/smart-splits.nvim",
 
-require("lazy").setup({
-	{ import = "pluginlist" },
-}, {
+	-- Lsp
+	"williamboman/mason.nvim",
+	"williamboman/mason-lspconfig.nvim",
 	{
-		defaults = {
-			lazy = true,
-			event = "VeryLazy",
+		"jose-elias-alvarez/null-ls.nvim",
+		event = { "BufReadPre", "BufNewFile" },
+	},
+	"neovim/nvim-lspconfig",
+
+	-- Cmp
+	"hrsh7th/nvim-cmp",
+	"saadparwaiz1/cmp_luasnip",
+	"hrsh7th/cmp-nvim-lua",
+	"hrsh7th/cmp-nvim-lsp",
+	"hrsh7th/cmp-buffer",
+	"hrsh7th/cmp-path",
+
+	-- Snipppet 
+	"L3MON4D3/LuaSnip",
+	"rafamadriz/friendly-snippets",
+
+	{
+		"akinsho/bufferline.nvim",
+		dependencies = "nvim-tree/nvim-web-devicons",
+		opts = {},
+	},
+
+	{
+		"echasnovski/mini.indentscope",
+		event = { "BufReadPre", "BufNewFile" },
+		opts = {
+			symbol = "│",
+			options = { try_as_border = true },
 		},
-		ui = {
-			size = { width = 0.8, height = 0.8 },
-			wrap = false,
-			border = "rounded",
-		},
-		install = {
-			missing = true,
-			colorscheme = { "minimus" },
-		},
-		browser = "brave",
-		change_detection = {
-			notify = false,
-		},
-		performance = {
-			cache = { enabled = true },
-			reset_packpath = true,
-			rtp = {
-				disabled_plugins = {
-					"gzip",
-					"matchit",
-					"matchparen",
-					-- "netrwPlugin",
-					"tarPlugin",
-					"tohtml",
-					"tutor",
-					"zipPlugin",
+		init = function()
+			vim.api.nvim_create_autocmd("FileType", {
+				pattern = {
+					"help",
+					"alpha",
+					"dashboard",
+					"neo-tree",
+					"Trouble",
+					"lazy",
+					"mason",
+					"notify",
+					"toggleterm",
+					"lazyterm",
 				},
+				callback = function()
+					vim.b.miniindentscope_disable = true
+				end,
+			})
+		end,
+	},
+
+	{
+		"windwp/nvim-autopairs",
+		event = "InsertEnter",
+		opts = {}, -- this is equalent to setup({}) function
+	},
+
+	{
+		"lewis6991/gitsigns.nvim",
+		opts = {},
+	},
+
+	{
+		"j-hui/fidget.nvim",
+		tag = "legacy",
+		event = "LspAttach",
+		opts = {},
+	},
+
+	{
+		"numToStr/Comment.nvim",
+		opts = {},
+	},
+
+	{
+		"nvim-treesitter/nvim-treesitter",
+		build = ":TSUpdate",
+	},
+
+	-- Telescope
+	{
+		"nvim-telescope/telescope.nvim",
+		dependencies = { "nvim-lua/plenary.nvim" },
+	},
+	{
+		"nvim-telescope/telescope-fzf-native.nvim",
+		build = "make",
+	},
+	"nvim-telescope/telescope-ui-select.nvim",
+
+	-- Play with delimiters
+	{
+		"kylechui/nvim-surround",
+		event = "VeryLazy",
+		opts = {},
+	},
+
+	-- Additional typescript functionalities
+	{
+		"jose-elias-alvarez/typescript.nvim",
+		config = function()
+			require("typescript").setup({
+				disable_commands = false,
+				debug = false,
+				go_to_source_definition = {},
+				fallback = true,
+				server = {},
+			})
+		end,
+	},
+
+	-- Use Ctrl + h,j,k,l to navigate across vim and tmux
+	{
+		"christoomey/vim-tmux-navigator",
+		lazy = false,
+	},
+
+	-- Better code navigation
+	{
+		"folke/flash.nvim",
+		event = "VeryLazy",
+		opts = {},
+		keys = {
+			{
+				"s",
+				mode = { "n", "x", "o" },
+				function()
+					require("flash").jump({
+						search = {
+							mode = function(str)
+								return "\\<" .. str
+							end,
+						},
+					})
+				end,
+				desc = "Flash",
+			},
+			{
+				"S",
+				mode = { "n", "o", "x" },
+				function()
+					require("flash").treesitter()
+				end,
+				desc = "Flash Treesitter",
+			},
+			{
+				"r",
+				mode = "o",
+				function()
+					require("flash").remote()
+				end,
+				desc = "Remote Flash",
+			},
+			{
+				"R",
+				mode = { "o", "x" },
+				function()
+					require("flash").treesitter_search()
+				end,
+				desc = "Flash Treesitter Search",
+			},
+			{
+				"<c-s>",
+				mode = { "c" },
+				function()
+					require("flash").toggle()
+				end,
+				desc = "Toggle Flash Search",
 			},
 		},
 	},
-})
+
+	-- View nicer diagnostics
+	{
+		"folke/trouble.nvim",
+		dependencies = "nvim-tree/nvim-web-devicons",
+		cmd = "TroubleToggle",
+		config = function()
+			require("trouble").setup({
+				height = 5,
+				padding = false,
+			})
+		end,
+	},
+
+	-- View colors in files
+	{
+		"NvChad/nvim-colorizer.lua",
+		opts = {
+			user_default_options = {
+				tailwind = true,
+			},
+		},
+	},
+
+	-- Show tailwind colors
+	{
+		"roobert/tailwindcss-colorizer-cmp.nvim",
+		config = function()
+			require("tailwindcss-colorizer-cmp").setup({
+				color_square_width = 2,
+			})
+		end,
+	},
+
+	-- Highlight todo"s and other markers
+	{
+		"folke/todo-comments.nvim",
+		dependencies = "nvim-lua/plenary.nvim",
+		opts = {},
+	},
+
+	-- Sync-edit html/jsx tags
+	{
+		"windwp/nvim-ts-autotag",
+		opts = {},
+	},
+
+	-- Comment stuff in jsx/tsx correctly
+	{
+		"JoosepAlviste/nvim-ts-context-commentstring",
+		event = "BufRead",
+	},
+
+	-- Show function signature when you type
+	{
+		"ray-x/lsp_signature.nvim",
+		event = "BufRead",
+		opts = {},
+	},
+
+	-- open url with gx
+	{ "felipec/vim-sanegx", event = "BufRead" },
+}
