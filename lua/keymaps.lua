@@ -137,6 +137,7 @@ nmap("<leader>gk", function()
 	gs.prev_hunk({ navigation_message = false })
 end)
 nmap("<leader>gb", gs.blame_line)
+nmap("<leader>gg", ":lua _LAZYGIT_TOGGLE()<CR>")
 
 -- Bufferline
 nmap("<S-h>", ":BufferLineCyclePrev<CR>")

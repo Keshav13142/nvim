@@ -10,6 +10,18 @@ if fn.executable("rg") then
 	vim.cmd([[autocmd QuickFixCmdPost [^l]* nested cwindow]])
 end
 
+-- use powershell in windows
+vim.opt.shell = "zsh"
+if vim.fn.has("win32") then
+	vim.opt.shell = vim.fn.executable("pwsh") and "pwsh" or "powershell"
+	vim.opt.shellcmdflag =
+		"-NoLogo -ExecutionPolicy RemoteSigned -Command [Console]::InputEncoding=[Console]::OutputEncoding=[System.Text.Encoding]::UTF8;"
+	vim.opt.shellredir = "-RedirectStandardOutput %s -NoNewWindow -Wait"
+	vim.opt.shellpipe = "2>&1 | Out-File -Encoding UTF8 %s; exit $LastExitCode"
+	vim.opt.shellquote = ""
+	vim.opt.shellxquote = ""
+end
+
 local options = {
 	backspace = "indent,eol,start",
 	backup = false, -- creates a backup file
