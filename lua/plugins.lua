@@ -11,6 +11,7 @@ return {
 	"sainnhe/gruvbox-material",
 	"ThePrimeagen/vim-be-good",
 	"mrjones2014/smart-splits.nvim",
+	"akinsho/toggleterm.nvim",
 
 	-- Lsp
 	"williamboman/mason.nvim",
@@ -29,7 +30,7 @@ return {
 	"hrsh7th/cmp-buffer",
 	"hrsh7th/cmp-path",
 
-	-- Snipppet 
+	-- Snipppets
 	"L3MON4D3/LuaSnip",
 	"rafamadriz/friendly-snippets",
 
