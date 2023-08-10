@@ -86,9 +86,23 @@ require("mason-lspconfig").setup_handlers({
 		require("lspconfig").lua_ls.setup({
 			on_attach = on_attach,
 			capabilities = capabilities,
-			Lua = {
-				workspace = { checkThirdParty = false },
-				telemetry = { enable = false },
+			settings = {
+				Lua = {
+					telemetry = { enable = false },
+					format = {
+						enable = false,
+					},
+					diagnostics = {
+						globals = { "vim" },
+					},
+					workspace = {
+						checkThirdParty = false,
+						library = {
+							[vim.fn.expand("$VIMRUNTIME/lua")] = true,
+							[vim.fn.stdpath("config") .. "/lua"] = true,
+						},
+					},
+				},
 			},
 		})
 	end,
