@@ -32,6 +32,7 @@ local servers = {
 
 require("mason-lspconfig").setup({
 	ensure_installed = servers,
+	automatic_installation = false,
 })
 
 local on_attach = function(client, bufnr)

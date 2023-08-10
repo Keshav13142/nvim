@@ -11,7 +11,7 @@ require("mason-null-ls").setup({
 		"prettierd",
 		"stylua",
 	},
-	automatic_installation = true,
+	automatic_installation = false,
 })
 
 null_ls.setup({
