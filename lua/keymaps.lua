@@ -14,6 +14,11 @@ local function imap(key, map)
 	keymap("i", key, map, opts)
 end
 
+-- Fix bug with  vim-visual-multi
+vim.g.VM_maps = {
+	["I BS"] = "", -- disable backspace mapping
+}
+
 -- move lines up and down
 vmap("J", ":m '>+1<CR>gv=gv")
 vmap("K", ":m '<-2<CR>gv=gv")
@@ -36,13 +41,13 @@ nmap("g#", "g#zz")
 nmap("<leader><leader>", ":so<CR>")
 
 -- Fix issues with multi line insert and <C-c>
-imap("<C-c>", "<Esc>")
+imap("<C-c>", "<ESC>")
 
 -- Open netrw
 nmap("<leader>e", ":NvimTreeToggle<CR>")
 
 -- Ctrl+s to save
-keymap({ "i", "v", "n", "s" }, "<C-s>", ":w<CR><esc>")
+keymap({ "i", "v", "n", "s" }, "<C-s>", "<ESC>:w<CR>", opts)
 
 -- paste and delete register stuff
 vmap("<leader>P", '"_dP')
@@ -58,23 +63,23 @@ nmap("-", "<C-x>")
 -- set Shift+u as redo
 nmap("<S-u>", "<C-r>")
 
--- Clear search with <esc>
-keymap({ "i", "n" }, "<leader>h", ":noh<CR><esc>")
-keymap({ "i", "n" }, "<esc>", ":noh<CR><esc>")
+-- Clear search with <ESC>
+nmap("<leader>h", ":noh<CR>")
+nmap("<ESC>", ":noh<CR>")
 
 -- better indenting
 vmap("<", "<gv")
 vmap(">", ">gv")
 
 -- Search for word under cursor
-keymap({ "n", "x" }, "gw", "*N")
+keymap({ "n", "x" }, "gw", "*N", opts)
 
 -- remap ^ and $
 keymap({ "n", "v", "x", "o" }, "gh", "^", opts)
 keymap({ "n", "v", "x", "o" }, "gl", "$", opts)
 
 -- quit
-nmap("<C-q>", ":q!<CR>")
+nmap("<C-q>", ":qa!<CR>")
 -- Close  current buffer
 nmap("<leader>q", ":bd<CR>")
 
