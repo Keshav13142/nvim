@@ -5,6 +5,15 @@ local code_actions = null_ls.builtins.code_actions
 
 local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
 
+require("mason-null-ls").setup({
+	ensure_installed = {
+		"eslint_d",
+		"prettierd",
+		"stylua",
+	},
+	automatic_installation = true,
+})
+
 null_ls.setup({
 	root_dir = require("null-ls.utils").root_pattern(".null-ls-root", ".neoconf.json", "Makefile", ".git"),
 	sources = {

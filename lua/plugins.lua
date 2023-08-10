@@ -15,14 +15,18 @@ return {
 	"tpope/vim-unimpaired",
 	"nvim-tree/nvim-tree.lua",
 
-	-- Lsp
+	-- Lsp/linters
 	"williamboman/mason.nvim",
+	"neovim/nvim-lspconfig",
 	"williamboman/mason-lspconfig.nvim",
 	{
 		"jose-elias-alvarez/null-ls.nvim",
 		event = { "BufReadPre", "BufNewFile" },
 	},
-	"neovim/nvim-lspconfig",
+	{
+		"jay-babu/mason-null-ls.nvim",
+		event = { "BufReadPre", "BufNewFile" },
+	},
 
 	-- Cmp
 	"hrsh7th/nvim-cmp",
