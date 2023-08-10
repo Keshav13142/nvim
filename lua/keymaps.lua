@@ -113,14 +113,6 @@ nmap("<leader>sg", telescope.live_grep)
 nmap("<leader>sd", telescope.diagnostics)
 nmap("<leader>sb", telescope.git_branches)
 
--- Lsp
-local dg = vim.diagnostic
-local lbuf = vim.lsp.buf
-nmap("<leader>ca", lbuf.code_action)
-nmap("<leader>[d", dg.goto_prev)
-nmap("<leader>]d", dg.goto_next)
-nmap("<leader>lr", lbuf.rename)
-
 --  Diagnostics
 nmap("<leader>tt", ":TroubleToggle<CR>")
 nmap("<leader>tw", ":TroubleToggle workspace_diagnostics<CR>")
