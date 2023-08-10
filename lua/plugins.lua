@@ -1,17 +1,19 @@
 return {
-	"mhinz/vim-startify",
-	"kosayoda/nvim-lightbulb",
+	"ThePrimeagen/vim-be-good",
+	"akinsho/toggleterm.nvim",
 	"folke/neodev.nvim",
 	"folke/zen-mode.nvim",
-	"tpope/vim-unimpaired",
-	"tpope/vim-repeat",
-	"tpope/vim-speeddating",
-	"tpope/vim-sleuth",
+	"kosayoda/nvim-lightbulb",
 	"mg979/vim-visual-multi",
-	"sainnhe/gruvbox-material",
-	"ThePrimeagen/vim-be-good",
+	"mhinz/vim-startify",
 	"mrjones2014/smart-splits.nvim",
-	"akinsho/toggleterm.nvim",
+	"nvim-lua/plenary.nvim",
+	"sainnhe/gruvbox-material",
+	"tpope/vim-repeat",
+	"tpope/vim-sleuth",
+	"tpope/vim-speeddating",
+	"tpope/vim-unimpaired",
+	"nvim-tree/nvim-tree.lua",
 
 	-- Lsp
 	"williamboman/mason.nvim",
@@ -97,10 +99,7 @@ return {
 	},
 
 	-- Telescope
-	{
-		"nvim-telescope/telescope.nvim",
-		dependencies = { "nvim-lua/plenary.nvim" },
-	},
+	"nvim-telescope/telescope.nvim",
 	{
 		"nvim-telescope/telescope-fzf-native.nvim",
 		build = "make",

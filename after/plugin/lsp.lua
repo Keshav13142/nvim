@@ -1,6 +1,6 @@
 local on_attach = function(_, bufnr)
 	local bufmap = function(keys, func)
-		vim.keymap.set("n", keys, func, { buffer = bufnr })
+		vim.keymap.set("n", keys, func, { buffer = bufnr, silent = true })
 	end
 
 	bufmap("<leader>r", vim.lsp.buf.rename)
@@ -47,17 +47,4 @@ require("mason-lspconfig").setup_handlers({
 			},
 		})
 	end,
-
-	-- another example
-	-- ["omnisharp"] = function()
-	--     require('lspconfig').omnisharp.setup {
-	--         filetypes = { "cs", "vb" },
-	--         root_dir = require('lspconfig').util.root_pattern("*.csproj", "*.sln"),
-	--         on_attach = on_attach,
-	--         capabilities = capabilities,
-	--         enable_roslyn_analyzers = true,
-	--         analyze_open_documents_only = true,
-	--         enable_import_completion = true,
-	--     }
-	-- end,
 })

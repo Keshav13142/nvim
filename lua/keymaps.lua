@@ -39,7 +39,7 @@ nmap("<leader><leader>", ":so<CR>")
 imap("<C-c>", "<Esc>")
 
 -- Open netrw
-nmap("<leader>e", ":Ex<CR>")
+nmap("<leader>e", ":NvimTreeToggle<CR>")
 
 -- Ctrl+s to save
 keymap({ "i", "v", "n", "s" }, "<C-s>", ":w<CR><esc>")
@@ -83,11 +83,6 @@ nmap("<C-h>", ss.move_cursor_left)
 nmap("<C-j>", ss.move_cursor_down)
 nmap("<C-k>", ss.move_cursor_up)
 nmap("<C-l>", ss.move_cursor_right)
---
-nmap("<C-Left>", ss.move_cursor_left)
-nmap("<C-Down>", ss.move_cursor_down)
-nmap("<C-Up>", ss.move_cursor_up)
-nmap("<C-Right>", ss.move_cursor_right)
 
 -- Resize splits
 nmap("<S-Left>", ss.resize_left)
