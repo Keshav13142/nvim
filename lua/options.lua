@@ -14,9 +14,9 @@ if fn.executable("rg") then
 	vim.cmd([[autocmd QuickFixCmdPost [^l]* nested cwindow]])
 end
 
--- use powershell in windows
-vim.opt.shell = "zsh"
-if vim.fn.has("win32") then
+-- Set shell based on OS
+local is_win = vim.loop.os_uname().sysname:find("Windows") and true or false
+if is_win then
 	vim.opt.shell = vim.fn.executable("pwsh") and "pwsh" or "powershell"
 	vim.opt.shellcmdflag =
 		"-NoLogo -ExecutionPolicy RemoteSigned -Command [Console]::InputEncoding=[Console]::OutputEncoding=[System.Text.Encoding]::UTF8;"
@@ -24,6 +24,8 @@ if vim.fn.has("win32") then
 	vim.opt.shellpipe = "2>&1 | Out-File -Encoding UTF8 %s; exit $LastExitCode"
 	vim.opt.shellquote = ""
 	vim.opt.shellxquote = ""
+else
+	vim.opt.shell = "zsh"
 end
 
 local options = {
