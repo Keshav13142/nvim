@@ -14,6 +14,7 @@ return {
 	"tpope/vim-speeddating",
 	"tpope/vim-unimpaired",
 	"nvim-tree/nvim-tree.lua",
+	"xiyaowong/transparent.nvim",
 
 	-- Lsp/linters
 	"williamboman/mason.nvim",
