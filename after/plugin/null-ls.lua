@@ -21,6 +21,7 @@ null_ls.setup({
 		formatting.shfmt,
 		formatting.nixpkgs_fmt,
 		formatting.prettierd,
+		formatting.rustfmt,
 
 		code_actions.statix,
 		code_actions.eslint_d,
