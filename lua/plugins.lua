@@ -15,6 +15,7 @@ return {
 	"tpope/vim-unimpaired",
 	"nvim-tree/nvim-tree.lua",
 	"xiyaowong/transparent.nvim",
+	"wellle/targets.vim",
 
 	-- Lsp/linters
 	"williamboman/mason.nvim",
