@@ -49,9 +49,18 @@ nmap("<leader>e", ":NvimTreeToggle<CR>")
 -- Ctrl+s to save
 keymap({ "i", "v", "n", "s" }, "<C-s>", "<ESC>:w<CR>", opts)
 
+-- Don't go to next char after ~
+nmap("~", "~h")
+
+-- some shortcuts for copy/paste
+nmap("dp", "ddp")
+nmap("dP", "ddkP")
+nmap("yp", "yyp")
+nmap("yP", "yyP")
+
 -- paste and delete register stuff
-vmap("<leader>P", '"_dP')
-vmap("<leader>D", '"_x')
+vmap("p", '"_dP')
+vmap("<leader>d", '"_d')
 nmap("Y", "0y$")
 -- Do not copy on x
 nmap("x", '"_x')
