@@ -66,7 +66,6 @@ return {
 
 	-- Themes
 	{ "ellisonleao/gruvbox.nvim", priority = 1000 },
-	"sainnhe/gruvbox-material",
 
 	-- Noice UI for buffers
 	{ "akinsho/bufferline.nvim", opts = {} },
