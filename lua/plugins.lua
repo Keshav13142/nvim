@@ -5,10 +5,8 @@ return {
 	"folke/zen-mode.nvim",
 	"kosayoda/nvim-lightbulb",
 	"mg979/vim-visual-multi",
-	"mhinz/vim-startify",
 	"mrjones2014/smart-splits.nvim",
 	"nvim-lua/plenary.nvim",
-	"sainnhe/gruvbox-material",
 	"tpope/vim-repeat",
 	"tpope/vim-sleuth",
 	"tpope/vim-speeddating",
@@ -19,35 +17,122 @@ return {
 	"nvim-tree/nvim-web-devicons",
 
 	-- Lsp/linters
-	"williamboman/mason.nvim",
-	"neovim/nvim-lspconfig",
-	"williamboman/mason-lspconfig.nvim",
 	{
-		"jose-elias-alvarez/null-ls.nvim",
-		event = { "BufReadPre", "BufNewFile" },
-	},
-	{
-		"jay-babu/mason-null-ls.nvim",
-		event = { "BufReadPre", "BufNewFile" },
+		"neovim/nvim-lspconfig",
+		dependencies = {
+			"williamboman/mason.nvim",
+			"williamboman/mason-lspconfig.nvim",
+			{
+				"jose-elias-alvarez/null-ls.nvim",
+				event = { "BufReadPre", "BufNewFile" },
+			},
+			{
+				"jay-babu/mason-null-ls.nvim",
+				event = { "BufReadPre", "BufNewFile" },
+			},
+		},
 	},
 
 	-- Cmp
-	"hrsh7th/nvim-cmp",
-	"saadparwaiz1/cmp_luasnip",
-	"hrsh7th/cmp-nvim-lua",
-	"hrsh7th/cmp-nvim-lsp",
-	"hrsh7th/cmp-buffer",
-	"hrsh7th/cmp-path",
+	{
+		"hrsh7th/nvim-cmp",
+		lazy = false,
+		dependencies = {
+			"saadparwaiz1/cmp_luasnip",
+			"hrsh7th/cmp-nvim-lua",
+			"hrsh7th/cmp-nvim-lsp",
+			"hrsh7th/cmp-buffer",
+			"hrsh7th/cmp-path",
+			"hrsh7th/cmp-nvim-lsp-signature-help",
+			-- Show tailwind colors
+			{
+				"roobert/tailwindcss-colorizer-cmp.nvim",
+				config = function()
+					require("tailwindcss-colorizer-cmp").setup({
+						color_square_width = 2,
+					})
+				end,
+			},
+		},
+	},
 
 	-- Snipppets
-	"L3MON4D3/LuaSnip",
-	"rafamadriz/friendly-snippets",
-
 	{
-		"akinsho/bufferline.nvim",
+		"L3MON4D3/LuaSnip",
+		dependencies = {
+			"rafamadriz/friendly-snippets",
+		},
+	},
+
+	-- Themes
+	{ "ellisonleao/gruvbox.nvim", priority = 1000 },
+	"sainnhe/gruvbox-material",
+
+	-- Noice UI for buffers
+	{ "akinsho/bufferline.nvim", opts = {} },
+
+	-- Sync-edit html/jsx tags
+	{ "windwp/nvim-ts-autotag", opts = {} },
+
+	-- Comment stuff in jsx/tsx correctly
+	{ "JoosepAlviste/nvim-ts-context-commentstring", event = "BufRead" },
+
+	-- Show function signature when you type
+	{ "ray-x/lsp_signature.nvim", event = "BufRead", opts = {} },
+
+	-- Play with delimiters
+	{ "kylechui/nvim-surround", event = "VeryLazy", opts = {} },
+
+	-- Use Ctrl + h,j,k,l to navigate across vim and tmux
+	{ "christoomey/vim-tmux-navigator", lazy = false },
+
+	-- Dashboard
+	{ "mhinz/vim-startify", lazy = false },
+
+	-- open url with gx
+	{ "felipec/vim-sanegx", event = "BufRead" },
+
+	-- Smart comments
+	{ "numToStr/Comment.nvim", opts = {} },
+
+	-- Git indication
+	{ "lewis6991/gitsigns.nvim", opts = {} },
+
+	--- autocomplete pairs
+	{
+		"windwp/nvim-autopairs",
+		event = "InsertEnter",
+		opts = {}, -- this is equalent to setup({}) function
+	},
+
+	-- nvim-lsp progress
+	{
+		"j-hui/fidget.nvim",
+		tag = "legacy",
+		event = "LspAttach",
 		opts = {},
 	},
 
+	--- Syntax highlighting
+	{
+		"nvim-treesitter/nvim-treesitter",
+		build = ":TSUpdate",
+	},
+
+	-- Telescope
+	{
+
+		"nvim-telescope/telescope.nvim",
+		dependencies = {
+			{
+				"nvim-telescope/telescope-fzf-native.nvim",
+				build = "make",
+			},
+			"nvim-telescope/telescope-ui-select.nvim",
+		},
+	},
+
+	-- Visualize indenting
 	{
 		"echasnovski/mini.indentscope",
 		event = { "BufReadPre", "BufNewFile" },
@@ -76,49 +161,6 @@ return {
 		end,
 	},
 
-	{
-		"windwp/nvim-autopairs",
-		event = "InsertEnter",
-		opts = {}, -- this is equalent to setup({}) function
-	},
-
-	{
-		"lewis6991/gitsigns.nvim",
-		opts = {},
-	},
-
-	{
-		"j-hui/fidget.nvim",
-		tag = "legacy",
-		event = "LspAttach",
-		opts = {},
-	},
-
-	{
-		"numToStr/Comment.nvim",
-		opts = {},
-	},
-
-	{
-		"nvim-treesitter/nvim-treesitter",
-		build = ":TSUpdate",
-	},
-
-	-- Telescope
-	"nvim-telescope/telescope.nvim",
-	{
-		"nvim-telescope/telescope-fzf-native.nvim",
-		build = "make",
-	},
-	"nvim-telescope/telescope-ui-select.nvim",
-
-	-- Play with delimiters
-	{
-		"kylechui/nvim-surround",
-		event = "VeryLazy",
-		opts = {},
-	},
-
 	-- Additional typescript functionalities
 	{
 		"jose-elias-alvarez/typescript.nvim",
@@ -131,12 +173,6 @@ return {
 				server = {},
 			})
 		end,
-	},
-
-	-- Use Ctrl + h,j,k,l to navigate across vim and tmux
-	{
-		"christoomey/vim-tmux-navigator",
-		lazy = false,
 	},
 
 	-- Better code navigation
@@ -211,26 +247,33 @@ return {
 		"NvChad/nvim-colorizer.lua",
 		opts = {
 			filetypes = {
+				"conf",
 				"css",
 				"html",
-				"lua",
+				"javascript",
 				"javascriptreact",
+				"json",
+				"jsonc",
+				"lua",
+				"typescript",
 				"typescriptreact",
+				"yaml",
+				"toml",
 			},
 			user_default_options = {
+				RGB = true,
+				RRGGBB = true,
+				names = false,
+				RRGGBBAA = false,
+				AARRGGBB = true,
+				rgb_fn = false,
+				hsl_fn = false,
+				css = false,
+				css_fn = false,
 				tailwind = true,
+				mode = "background",
 			},
 		},
-	},
-
-	-- Show tailwind colors
-	{
-		"roobert/tailwindcss-colorizer-cmp.nvim",
-		config = function()
-			require("tailwindcss-colorizer-cmp").setup({
-				color_square_width = 2,
-			})
-		end,
 	},
 
 	-- Highlight todo"s and other markers
@@ -247,26 +290,4 @@ return {
 			},
 		},
 	},
-
-	-- Sync-edit html/jsx tags
-	{
-		"windwp/nvim-ts-autotag",
-		opts = {},
-	},
-
-	-- Comment stuff in jsx/tsx correctly
-	{
-		"JoosepAlviste/nvim-ts-context-commentstring",
-		event = "BufRead",
-	},
-
-	-- Show function signature when you type
-	{
-		"ray-x/lsp_signature.nvim",
-		event = "BufRead",
-		opts = {},
-	},
-
-	-- open url with gx
-	{ "felipec/vim-sanegx", event = "BufRead" },
 }
