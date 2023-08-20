@@ -17,38 +17,37 @@ vim.opt.rtp:prepend(lazypath)
 require("lazy").setup({
 	{ import = "plugins" },
 }, {
-	{
-		defaults = {
-			lazy = true,
-			event = "VeryLazy",
-		},
-		ui = {
-			size = { width = 0.8, height = 0.8 },
-			wrap = false,
-			border = "rounded",
-		},
-		install = {
-			missing = true,
-			colorscheme = { "minimus" },
-		},
-		browser = "brave",
-		change_detection = {
-			notify = false,
-		},
-		performance = {
-			cache = { enabled = true },
-			reset_packpath = true,
-			rtp = {
-				disabled_plugins = {
-					"gzip",
-					"matchit",
-					"matchparen",
-					"tarPlugin",
-					"netrwPlugin",
-					"tohtml",
-					"tutor",
-					"zipPlugin",
-				},
+	defaults = {
+		lazy = false,
+		event = "VeryLazy",
+	},
+	ui = {
+		size = { width = 0.8, height = 0.8 },
+		wrap = false,
+		border = "rounded",
+	},
+	install = {
+		missing = true,
+		colorscheme = { "minimus" },
+	},
+	browser = "brave",
+	change_detection = {
+		enable = false,
+		notify = false,
+	},
+	performance = {
+		cache = { enabled = true },
+		reset_packpath = true,
+		rtp = {
+			disabled_plugins = {
+				"gzip",
+				"matchit",
+				"matchparen",
+				"tarPlugin",
+				"netrwPlugin",
+				"tohtml",
+				"tutor",
+				"zipPlugin",
 			},
 		},
 	},
