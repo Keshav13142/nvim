@@ -16,6 +16,7 @@ return {
 	"nvim-tree/nvim-tree.lua",
 	"xiyaowong/transparent.nvim",
 	"wellle/targets.vim",
+	"nvim-tree/nvim-web-devicons",
 
 	-- Lsp/linters
 	"williamboman/mason.nvim",
@@ -44,7 +45,6 @@ return {
 
 	{
 		"akinsho/bufferline.nvim",
-		dependencies = "nvim-tree/nvim-web-devicons",
 		opts = {},
 	},
 
@@ -197,7 +197,6 @@ return {
 	-- View nicer diagnostics
 	{
 		"folke/trouble.nvim",
-		dependencies = "nvim-tree/nvim-web-devicons",
 		cmd = "TroubleToggle",
 		config = function()
 			require("trouble").setup({
@@ -211,6 +210,13 @@ return {
 	{
 		"NvChad/nvim-colorizer.lua",
 		opts = {
+			filetypes = {
+				"css",
+				"html",
+				"lua",
+				"javascriptreact",
+				"typescriptreact",
+			},
 			user_default_options = {
 				tailwind = true,
 			},
@@ -230,8 +236,16 @@ return {
 	-- Highlight todo"s and other markers
 	{
 		"folke/todo-comments.nvim",
-		dependencies = "nvim-lua/plenary.nvim",
-		opts = {},
+		opts = {
+			colors = {
+				error = { "DiagnosticError", "ErrorMsg", "#EA6962" },
+				warning = { "DiagnosticWarn", "WarningMsg", "#D8A657" },
+				info = { "DiagnosticInfo", "#7DAEA3" },
+				hint = { "DiagnosticHint", "#89B482" },
+				default = { "Identifier", "#D3869B" },
+				test = { "Identifier", "#E78A4E" },
+			},
+		},
 	},
 
 	-- Sync-edit html/jsx tags
