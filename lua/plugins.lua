@@ -21,21 +21,7 @@ return {
 		priority = 1000,
 		config = function()
 			require("gruvbox").setup({
-				undercurl = true,
-				underline = true,
-				bold = true,
-				italic = {
-					strings = true,
-					comments = true,
-					operators = false,
-					folds = true,
-				},
-				strikethrough = true,
-				invert_selection = false,
-				invert_signs = false,
-				invert_tabline = false,
-				invert_intend_guides = false,
-				inverse = false,
+				inverse = true,
 				contrast = "soft",
 				palette_overrides = {
 					bright_aqua = "#89B482",
@@ -56,9 +42,6 @@ return {
 			vim.cmd("colorscheme gruvbox")
 		end,
 	},
-
-	-- Noice UI for buffers
-	{ "akinsho/bufferline.nvim", opts = {} },
 
 	-- Sync-edit html/jsx tags
 	{ "windwp/nvim-ts-autotag", opts = {} },
@@ -107,11 +90,22 @@ return {
 
 	-- Better inc/dec using C-a and C-x
 	{
-		"nat-415/boole.nvim",
+		"nat-418/boole.nvim",
 		opts = {
 			mappings = {
 				increment = "<C-a>",
 				decrement = "<C-x>",
+			},
+		},
+	},
+
+	-- Noice UI for buffers
+	{
+		"akinsho/bufferline.nvim",
+		opts = {
+			options = {
+				show_buffer_icons = false,
+				show_buffer_close_icons = false,
 			},
 		},
 	},

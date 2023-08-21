@@ -14,8 +14,6 @@ require("transparent").setup({
 		"NvimTreeNormalNC",
 		"SignColumn",
 		"TelescopeBorder",
-		"StatusLine",
-		"StatusLineNC",
 	},
 })
 
