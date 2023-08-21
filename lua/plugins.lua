@@ -9,7 +9,6 @@ return {
 	"nvim-lua/plenary.nvim",
 	"tpope/vim-repeat",
 	"tpope/vim-sleuth",
-	"tpope/vim-speeddating",
 	"tpope/vim-unimpaired",
 	"nvim-tree/nvim-tree.lua",
 	"xiyaowong/transparent.nvim",
@@ -49,6 +48,9 @@ return {
 	-- Git indication
 	{ "lewis6991/gitsigns.nvim", opts = {} },
 
+	--- Syntax highlighting and much more
+	{ "nvim-treesitter/nvim-treesitter", build = ":TSUpdate" },
+
 	--- autocomplete pairs
 	{
 		"windwp/nvim-autopairs",
@@ -64,10 +66,15 @@ return {
 		opts = {},
 	},
 
-	--- Syntax highlighting
+	-- Better inc/dec using C-a and C-x
 	{
-		"nvim-treesitter/nvim-treesitter",
-		build = ":TSUpdate",
+		"nat-415/boole.nvim",
+		opts = {
+			mappings = {
+				increment = "<C-a>",
+				decrement = "<C-x>",
+			},
+		},
 	},
 
 	-- Telescope
