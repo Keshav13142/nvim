@@ -90,7 +90,7 @@ keymap({ "n", "v", "x", "o" }, "gl", "$", opts)
 -- quit
 nmap("<C-q>", ":qa!<CR>")
 -- Close  current buffer
-nmap("<leader>q", ":bd<CR>")
+nmap("<leader>q", ":Bdelete<CR>")
 
 -- Navigate splits
 nmap("<C-h>", ss.move_cursor_left)

@@ -14,6 +14,7 @@ return {
 	"xiyaowong/transparent.nvim",
 	"wellle/targets.vim",
 	"nvim-tree/nvim-web-devicons",
+	"famiu/bufdelete.nvim",
 
 	-- Themes
 	{
