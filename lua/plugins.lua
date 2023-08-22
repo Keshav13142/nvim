@@ -55,9 +55,6 @@ return {
 	-- Play with delimiters
 	{ "kylechui/nvim-surround", event = "VeryLazy", opts = {} },
 
-	-- Use Ctrl + h,j,k,l to navigate across vim and tmux
-	{ "christoomey/vim-tmux-navigator", lazy = false },
-
 	-- Dashboard
 	{ "mhinz/vim-startify", lazy = false },
 
@@ -171,35 +168,6 @@ return {
 		},
 	},
 
-	-- Visualize indenting
-	{
-		"echasnovski/mini.indentscope",
-		event = { "BufReadPre", "BufNewFile" },
-		opts = {
-			symbol = "│",
-			options = { try_as_border = true },
-		},
-		init = function()
-			vim.api.nvim_create_autocmd("FileType", {
-				pattern = {
-					"help",
-					"alpha",
-					"dashboard",
-					"neo-tree",
-					"Trouble",
-					"lazy",
-					"mason",
-					"notify",
-					"toggleterm",
-					"lazyterm",
-				},
-				callback = function()
-					vim.b.miniindentscope_disable = true
-				end,
-			})
-		end,
-	},
-
 	-- Additional typescript functionalities
 	{
 		"jose-elias-alvarez/typescript.nvim",
@@ -212,61 +180,6 @@ return {
 				server = {},
 			})
 		end,
-	},
-
-	-- Better code navigation
-	{
-		"folke/flash.nvim",
-		event = "VeryLazy",
-		opts = {},
-		keys = {
-			{
-				"s",
-				mode = { "n", "x", "o" },
-				function()
-					require("flash").jump({
-						search = {
-							mode = function(str)
-								return "\\<" .. str
-							end,
-						},
-					})
-				end,
-				desc = "Flash",
-			},
-			{
-				"S",
-				mode = { "n", "o", "x" },
-				function()
-					require("flash").treesitter()
-				end,
-				desc = "Flash Treesitter",
-			},
-			{
-				"r",
-				mode = "o",
-				function()
-					require("flash").remote()
-				end,
-				desc = "Remote Flash",
-			},
-			{
-				"R",
-				mode = { "o", "x" },
-				function()
-					require("flash").treesitter_search()
-				end,
-				desc = "Flash Treesitter Search",
-			},
-			{
-				"<c-s>",
-				mode = { "c" },
-				function()
-					require("flash").toggle()
-				end,
-				desc = "Toggle Flash Search",
-			},
-		},
 	},
 
 	-- View nicer diagnostics
