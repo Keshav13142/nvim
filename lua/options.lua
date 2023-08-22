@@ -2,10 +2,6 @@
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
--- Disable netrw
-vim.g.loaded_netrw = 1
-vim.g.loaded_netrwPlugin = 1
-
 -- If ripgrep installed, use that as a grepper
 local fn = vim.fn
 if fn.executable("rg") then
@@ -33,7 +29,7 @@ local options = {
 	backup = false, -- creates a backup file
 	breakindent = true,
 	clipboard = "unnamedplus", -- allows neovim to access the system clipboard
-	cmdheight = 0, -- more space in the neovim command line for displaying messages
+	cmdheight = 1, -- more space in the neovim command line for displaying messages
 	completeopt = { "menuone", "noselect" }, -- mostly just for cmp
 	conceallevel = 0, -- so that `` is visible in markdown files
 	confirm = true, -- Confirm to save changes before exiting modified buffer

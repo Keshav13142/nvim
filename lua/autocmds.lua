@@ -56,7 +56,7 @@ au("BufEnter", {
 	group = opt_group,
 })
 
--- open telescope on startup (Only works when netrw is disabled)
+-- open telescope on startup (Only works when netrw and nvim-tree is disabled)
 local ts_group = augroup("telescope")
 au("VimEnter", {
 	callback = function()
