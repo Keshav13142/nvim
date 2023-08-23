@@ -147,17 +147,9 @@ return {
 			"hrsh7th/cmp-nvim-lua",
 			"hrsh7th/cmp-nvim-lsp",
 			"hrsh7th/cmp-buffer",
+			"hrsh7th/cmp-cmdline",
 			"hrsh7th/cmp-path",
-			"hrsh7th/cmp-nvim-lsp-signature-help",
-			-- Show tailwind colors
-			{
-				"roobert/tailwindcss-colorizer-cmp.nvim",
-				config = function()
-					require("tailwindcss-colorizer-cmp").setup({
-						color_square_width = 2,
-					})
-				end,
-			},
+			"roobert/tailwindcss-colorizer-cmp.nvim",
 		},
 	},
 
