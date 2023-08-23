@@ -1,9 +1,12 @@
 local keymap = vim.keymap.set
 local opts = { noremap = true, silent = true }
-local ss = require("smart-splits")
 
 local function nmap(key, map)
 	keymap("n", key, map, opts)
+end
+
+local function lnmap(key, map)
+	keymap("n", "<leader>" .. key, map, opts)
 end
 
 local function vmap(key, map)
@@ -44,7 +47,7 @@ nmap("<leader><leader>", ":so<CR>")
 imap("<C-c>", "<ESC>")
 
 -- Open netrw
-nmap("<leader>e", ":NvimTreeToggle<CR>")
+lnmap("e", ":NvimTreeToggle<CR>")
 
 -- Ctrl+s to save
 keymap({ "i", "v", "n", "s" }, "<C-s>", "<ESC>:w<CR>", opts)
@@ -73,7 +76,7 @@ nmap("-", "<C-x>")
 nmap("<S-u>", "<C-r>")
 
 -- Clear search with <ESC>
-nmap("<leader>h", ":noh<CR>")
+lnmap("h", ":noh<CR>")
 nmap("<ESC>", ":noh<CR>")
 
 -- better indenting
@@ -90,14 +93,14 @@ keymap({ "n", "v", "x", "o" }, "gl", "$", opts)
 -- quit
 nmap("<C-q>", ":qa!<CR>")
 -- Close  current buffer
-nmap("<leader>q", ":Bdelete<CR>")
+lnmap("q", ":Bdelete<CR>")
 
 -- Navigate splits
+local ss = require("smart-splits")
 nmap("<C-h>", ss.move_cursor_left)
 nmap("<C-j>", ss.move_cursor_down)
 nmap("<C-k>", ss.move_cursor_up)
 nmap("<C-l>", ss.move_cursor_right)
-
 -- Resize splits
 nmap("<S-Left>", ss.resize_left)
 nmap("<S-Down>", ss.resize_down)
@@ -105,46 +108,46 @@ nmap("<S-Up>", ss.resize_up)
 nmap("<S-Right>", ss.resize_right)
 
 -- Make current file executable
-nmap("<leader>x", ":!chmod +x %<CR>")
+lnmap("x", ":!chmod +x %<CR>")
 
 -- Sort lines
 vmap("f", ":'<,'>!sort<CR>")
 
-nmap("<leader>v", ":vsp<CR>")
-nmap("<leader>V", ":sp<CR>")
+lnmap("v", ":vsp<CR>")
+lnmap("V", ":sp<CR>")
 
 -- Telescope
 local telescope = require("telescope.builtin")
-nmap("<leader>gf", telescope.git_files)
-nmap("<leader>sf", telescope.find_files)
-nmap("<leader>sh", telescope.help_tags)
-nmap("<leader>sg", telescope.live_grep)
-nmap("<leader>sd", telescope.diagnostics)
-nmap("<leader>sb", telescope.git_branches)
+lnmap("gf", telescope.git_files)
+lnmap("sf", telescope.find_files)
+lnmap("sh", telescope.help_tags)
+lnmap("sg", telescope.live_grep)
+lnmap("sd", telescope.diagnostics)
+lnmap("sb", telescope.git_branches)
 
 --  Diagnostics
-nmap("<leader>tt", ":TroubleToggle<CR>")
-nmap("<leader>tw", ":TroubleToggle workspace_diagnostics<CR>")
+lnmap("tt", ":TroubleToggle<CR>")
+lnmap("tw", ":TroubleToggle workspace_diagnostics<CR>")
 
 -- save without formatting
-nmap("<leader>W", ":noautocmd w<CR>")
+lnmap("W", ":noautocmd w<CR>")
 
 -- Git
 local gs = require("gitsigns")
-nmap("<leader>gj", function()
+lnmap("gj", function()
 	gs.next_hunk({ navigation_message = false })
 end)
-nmap("<leader>gk", function()
+lnmap("gk", function()
 	gs.prev_hunk({ navigation_message = false })
 end)
-nmap("<leader>gb", gs.blame_line)
-nmap("<leader>gg", ":lua _LAZYGIT_TOGGLE()<CR>")
+lnmap("gb", gs.blame_line)
+lnmap("gg", ":lua _LAZYGIT_TOGGLE()<CR>")
 
 -- Bufferline
 nmap("<S-h>", ":BufferLineCyclePrev<CR>")
 nmap("<S-l>", ":BufferLineCycleNext<CR>")
-nmap("<leader>bb", ":BufferLinePick<CR>")
-nmap("<leader>bc", ":BufferLinePickClose<CR>")
-nmap("<leader>bh", ":BufferLineCloseLeft<CR>")
-nmap("<leader>bl", ":BufferLineCloseRight<CR>")
-nmap("<leader>bf", ":Telescope buffers previewer=false<CR>")
+lnmap("bb", ":BufferLinePick<CR>")
+lnmap("bc", ":BufferLinePickClose<CR>")
+lnmap("bh", ":BufferLineCloseLeft<CR>")
+lnmap("bl", ":BufferLineCloseRight<CR>")
+lnmap("bf", ":Telescope buffers previewer=false<CR>")
