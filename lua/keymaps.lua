@@ -49,8 +49,9 @@ imap("<C-c>", "<ESC>")
 -- Open netrw
 lnmap("e", ":NvimTreeToggle<CR>")
 
--- Ctrl+s to save
+-- save file
 keymap({ "i", "v", "n", "s" }, "<C-s>", "<ESC>:w<CR>", opts)
+lnmap("w", ":w<CR>")
 
 -- Don't go to next char after ~
 nmap("~", "~h")
