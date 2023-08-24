@@ -16,31 +16,69 @@ return {
 	"nvim-tree/nvim-web-devicons",
 	"famiu/bufdelete.nvim",
 
-	-- Themes
+	-- Theme
 	{
-		"ellisonleao/gruvbox.nvim",
+		"catppuccin/nvim",
+		name = "catppuccin",
 		priority = 1000,
 		config = function()
-			require("gruvbox").setup({
-				inverse = true,
-				contrast = "soft",
-				palette_overrides = {
-					bright_aqua = "#89B482",
-					bright_blue = "#83a598",
-					bright_green = "#A9B665",
-					bright_orange = "#E78A4E",
-					bright_purple = "#d3869b",
-					bright_red = "#EA6962",
-					bright_yellow = "#D8A657",
-					dark0 = "#282828",
-					dark0_soft = "#1b1b1b",
-					gray = "#7C6F64",
-					light1 = "#D4BE98",
+			require("catppuccin").setup({
+				background = {
+					dark = "mocha",
 				},
-				dim_inactive = true,
-				transparent_mode = true,
+				color_overrides = {
+					mocha = {
+						rosewater = "#EA6962",
+						flamingo = "#EA6962",
+						pink = "#D3869B",
+						mauve = "#D3869B",
+						red = "#EA6962",
+						maroon = "#EA6962",
+						peach = "#BD6F3E",
+						yellow = "#D8A657",
+						green = "#A9B665",
+						teal = "#89B482",
+						sky = "#89B482",
+						sapphire = "#89B482",
+						blue = "#7DAEA3",
+						lavender = "#7DAEA3",
+						text = "#D4BE98",
+						subtext1 = "#BDAE8B",
+						subtext0 = "#A69372",
+						overlay2 = "#8C7A58",
+						overlay1 = "#735F3F",
+						overlay0 = "#958272",
+						surface2 = "#4B4F51",
+						surface1 = "#2A2D2E",
+						surface0 = "#232728",
+						base = "#1D2021",
+						mantle = "#191C1D",
+						crust = "#151819",
+					},
+				},
+				transparent_background = true,
+				integrations = {
+					cmp = true,
+					gitsigns = true,
+					nvimtree = true,
+					treesitter = true,
+					fidget = true,
+					mason = true,
+					telescope = true,
+					lsp_trouble = true,
+				},
+				custom_highlights = function(colors)
+					return {
+						Pmenu = { bg = colors.crust },
+						PmenuSel = { bg = colors.surface0 },
+						FloatBorder = { fg = colors.surface2 },
+						LSPInfoBorder = { fg = colors.surface2 },
+						GitSignsChange = { fg = colors.peach },
+					}
+				end,
 			})
-			vim.cmd("colorscheme gruvbox")
+
+			vim.api.nvim_command("colorscheme catppuccin")
 		end,
 	},
 
