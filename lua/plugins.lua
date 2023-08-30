@@ -1,19 +1,33 @@
 return {
+	-- Get good at vim. Duh!
 	"ThePrimeagen/vim-be-good",
+	-- Open terminals inside nvim
 	"akinsho/toggleterm.nvim",
+	-- Better lua lsp stuff
 	"folke/neodev.nvim",
+	-- Zen mode
 	"folke/zen-mode.nvim",
+	-- Highlight code actions
 	"kosayoda/nvim-lightbulb",
+	-- Better multi line editing
 	"mg979/vim-visual-multi",
+	-- Navigate between splits (mainly for wezterm, and tmux)
 	"mrjones2014/smart-splits.nvim",
+	-- dependency for many plugins
 	"nvim-lua/plenary.nvim",
+	-- Better repeat motions
 	"tpope/vim-repeat",
+	-- Set buffer options automatically
 	"tpope/vim-sleuth",
-	"tpope/vim-unimpaired",
+	-- File tree
 	"nvim-tree/nvim-tree.lua",
+	-- Make things transparent
 	"xiyaowong/transparent.nvim",
+	-- Additional text objects
 	"wellle/targets.vim",
+	-- Icons for stuff
 	"nvim-tree/nvim-web-devicons",
+	-- Delete buffers peacefully
 	"famiu/bufdelete.nvim",
 
 	-- Theme
@@ -88,17 +102,11 @@ return {
 	-- Comment stuff in jsx/tsx correctly
 	{ "JoosepAlviste/nvim-ts-context-commentstring", event = "BufRead" },
 
-	-- Show function signature when you type
-	{ "ray-x/lsp_signature.nvim", event = "BufRead", opts = {} },
-
 	-- Play with delimiters
 	{ "kylechui/nvim-surround", event = "VeryLazy", opts = {} },
 
 	-- Dashboard
 	{ "mhinz/vim-startify", lazy = false },
-
-	-- open url with gx
-	{ "felipec/vim-sanegx", event = "BufRead" },
 
 	-- Smart comments
 	{ "numToStr/Comment.nvim", opts = {} },
@@ -116,14 +124,6 @@ return {
 		opts = {}, -- this is equalent to setup({}) function
 	},
 
-	-- nvim-lsp progress
-	{
-		"j-hui/fidget.nvim",
-		tag = "legacy",
-		event = "LspAttach",
-		opts = {},
-	},
-
 	-- Better inc/dec using C-a and C-x
 	{
 		"nat-418/boole.nvim",
@@ -133,6 +133,16 @@ return {
 				decrement = "<C-x>",
 			},
 		},
+	},
+
+	-- Show function signature when you type
+	{
+		"ray-x/lsp_signature.nvim",
+		event = "VeryLazy",
+		opts = {},
+		config = function(_, opts)
+			require("lsp_signature").setup(opts)
+		end,
 	},
 
 	-- Noice UI for buffers
@@ -194,9 +204,7 @@ return {
 	-- Snipppets
 	{
 		"L3MON4D3/LuaSnip",
-		dependencies = {
-			"rafamadriz/friendly-snippets",
-		},
+		dependencies = "rafamadriz/friendly-snippets",
 	},
 
 	-- Additional typescript functionalities
