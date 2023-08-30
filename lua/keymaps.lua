@@ -95,6 +95,7 @@ keymap({ "n", "v", "x", "o" }, "gl", "$", opts)
 nmap("<C-q>", ":qa!<CR>")
 -- Close  current buffer
 lnmap("q", ":Bdelete<CR>")
+lnmap("Q", ":q<CR>")
 
 -- Navigate splits
 local ss = require("smart-splits")
