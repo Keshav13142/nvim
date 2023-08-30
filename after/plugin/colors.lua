@@ -24,3 +24,33 @@ vim.g.transparent_groups = vim.list_extend(
 		return v.hl_group
 	end, vim.tbl_values(require("bufferline.config").highlights))
 )
+
+require("colorizer").setup({
+	filetypes = {
+		"conf",
+		"css",
+		"html",
+		"javascript",
+		"javascriptreact",
+		"json",
+		"jsonc",
+		"lua",
+		"typescript",
+		"typescriptreact",
+		"yaml",
+		"toml",
+	},
+	user_default_options = {
+		RGB = true,
+		RRGGBB = true,
+		names = false,
+		RRGGBBAA = false,
+		AARRGGBB = true,
+		rgb_fn = false,
+		hsl_fn = false,
+		css = false,
+		css_fn = false,
+		tailwind = true,
+		mode = "background",
+	},
+})

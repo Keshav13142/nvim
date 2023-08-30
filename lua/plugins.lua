@@ -29,8 +29,10 @@ return {
 	"nvim-tree/nvim-web-devicons",
 	-- Delete buffers peacefully
 	"famiu/bufdelete.nvim",
+	-- View colors in files
+	"NvChad/nvim-colorizer.lua",
 
-	-- Theme
+	-- Theme (have to setup at start)
 	{
 		"catppuccin/nvim",
 		name = "catppuccin",
@@ -139,7 +141,6 @@ return {
 	{
 		"ray-x/lsp_signature.nvim",
 		event = "VeryLazy",
-		opts = {},
 		config = function(_, opts)
 			require("lsp_signature").setup(opts)
 		end,
@@ -153,6 +154,28 @@ return {
 				show_buffer_icons = false,
 				show_buffer_close_icons = false,
 			},
+		},
+	},
+
+	-- Additional typescript functionalities
+	{
+		"jose-elias-alvarez/typescript.nvim",
+		opts = {
+			disable_commands = false,
+			debug = false,
+			go_to_source_definition = {},
+			fallback = true,
+			server = {},
+		},
+	},
+
+	-- View nicer diagnostics
+	{
+		"folke/trouble.nvim",
+		cmd = "TroubleToggle",
+		opts = {
+			height = 5,
+			padding = false,
 		},
 	},
 
@@ -207,67 +230,7 @@ return {
 		dependencies = "rafamadriz/friendly-snippets",
 	},
 
-	-- Additional typescript functionalities
-	{
-		"jose-elias-alvarez/typescript.nvim",
-		config = function()
-			require("typescript").setup({
-				disable_commands = false,
-				debug = false,
-				go_to_source_definition = {},
-				fallback = true,
-				server = {},
-			})
-		end,
-	},
-
-	-- View nicer diagnostics
-	{
-		"folke/trouble.nvim",
-		cmd = "TroubleToggle",
-		config = function()
-			require("trouble").setup({
-				height = 5,
-				padding = false,
-			})
-		end,
-	},
-
-	-- View colors in files
-	{
-		"NvChad/nvim-colorizer.lua",
-		opts = {
-			filetypes = {
-				"conf",
-				"css",
-				"html",
-				"javascript",
-				"javascriptreact",
-				"json",
-				"jsonc",
-				"lua",
-				"typescript",
-				"typescriptreact",
-				"yaml",
-				"toml",
-			},
-			user_default_options = {
-				RGB = true,
-				RRGGBB = true,
-				names = false,
-				RRGGBBAA = false,
-				AARRGGBB = true,
-				rgb_fn = false,
-				hsl_fn = false,
-				css = false,
-				css_fn = false,
-				tailwind = true,
-				mode = "background",
-			},
-		},
-	},
-
-	-- Highlight todo"s and other markers
+	-- Highlight todos and other markers
 	{
 		"folke/todo-comments.nvim",
 		opts = {
