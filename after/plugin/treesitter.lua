@@ -22,8 +22,4 @@ require("nvim-treesitter.configs").setup({
 		"vimdoc",
 		"yaml",
 	},
-	context_commentstring = {
-		enable = true,
-		enable_autocmd = false,
-	},
 })

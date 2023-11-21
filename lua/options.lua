@@ -2,6 +2,9 @@
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
+-- Speed up context_commentstring loading
+vim.g.skip_ts_context_commentstring_module = true
+
 -- If ripgrep installed, use that as a grepper
 local fn = vim.fn
 if fn.executable("rg") then
