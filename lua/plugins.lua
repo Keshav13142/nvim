@@ -94,6 +94,8 @@ return {
 					}
 				end,
 			})
+
+			vim.cmd.colorscheme("catppuccin")
 		end,
 	},
 
@@ -104,8 +106,23 @@ return {
 			enable = true,
 			enable_rename = true,
 			enable_close = true,
-			enable_close_on_slash = true
-		}
+			enable_close_on_slash = true,
+		},
+	},
+
+	{
+		"kevinhwang91/nvim-ufo",
+		dependencies = {
+			"kevinhwang91/promise-async",
+			"luukvbaal/statuscol.nvim",
+		},
+	},
+
+	{
+		"lukas-reineke/indent-blankline.nvim",
+		main = "ibl",
+		opts = {},
+		event = { "BufReadPre", "BufNewFile" },
 	},
 
 	-- Comment stuff in jsx/tsx correctly
@@ -124,7 +141,11 @@ return {
 	{ "lewis6991/gitsigns.nvim", opts = {} },
 
 	--- Syntax highlighting and much more
-	{ "nvim-treesitter/nvim-treesitter", build = ":TSUpdate" },
+	{
+		"nvim-treesitter/nvim-treesitter",
+		build = ":TSUpdate",
+		event = { "BufReadPre", "BufNewFile" },
+	},
 
 	--- autocomplete pairs
 	{
@@ -188,7 +209,6 @@ return {
 
 	-- Telescope
 	{
-
 		"nvim-telescope/telescope.nvim",
 		dependencies = {
 			{
@@ -220,6 +240,7 @@ return {
 	{
 		"hrsh7th/nvim-cmp",
 		lazy = false,
+		event = "InsertEnter",
 		dependencies = {
 			"saadparwaiz1/cmp_luasnip",
 			"hrsh7th/cmp-nvim-lua",
@@ -235,6 +256,7 @@ return {
 	{
 		"L3MON4D3/LuaSnip",
 		dependencies = "rafamadriz/friendly-snippets",
+		event = "InsertEnter",
 	},
 
 	-- Highlight todos and other markers

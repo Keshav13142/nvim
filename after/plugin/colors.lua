@@ -1,7 +1,5 @@
 vim.o.background = "dark"
 
-vim.cmd.colorscheme("catppuccin")
-
 -- For neovim and nvim-tree transparency
 require("transparent").setup({
 	extra_groups = {
