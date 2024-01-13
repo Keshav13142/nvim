@@ -36,6 +36,7 @@ return {
 	{
 		"catppuccin/nvim",
 		name = "catppuccin",
+		lazy = false,
 		priority = 1000,
 		config = function()
 			require("catppuccin").setup({
@@ -93,13 +94,19 @@ return {
 					}
 				end,
 			})
-
-			vim.api.nvim_command("colorscheme catppuccin")
 		end,
 	},
 
 	-- Sync-edit html/jsx tags
-	{ "windwp/nvim-ts-autotag", opts = {} },
+	{
+		"windwp/nvim-ts-autotag",
+		opts = {
+			enable = true,
+			enable_rename = true,
+			enable_close = true,
+			enable_close_on_slash = true
+		}
+	},
 
 	-- Comment stuff in jsx/tsx correctly
 	{ "JoosepAlviste/nvim-ts-context-commentstring", event = "BufRead" },
