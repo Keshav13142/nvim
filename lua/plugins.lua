@@ -123,6 +123,7 @@ return {
 		main = "ibl",
 		opts = {},
 		event = { "BufReadPre", "BufNewFile" },
+		enabled = false,
 	},
 
 	-- Comment stuff in jsx/tsx correctly
