@@ -1,59 +1,18 @@
 return {
-	-- Get good at vim. Duh!
-	"ThePrimeagen/vim-be-good",
-	-- Open terminals inside nvim
-	"akinsho/toggleterm.nvim",
-	-- Better lua lsp stuff
-	"folke/neodev.nvim",
-	-- Zen mode
-	"folke/zen-mode.nvim",
-	-- Highlight code actions
-	"kosayoda/nvim-lightbulb",
-	-- Better multi line editing
-	"mg979/vim-visual-multi",
-	-- Navigate between splits (mainly for wezterm, and tmux)
-	"mrjones2014/smart-splits.nvim",
-	-- dependency for many plugins
-	"nvim-lua/plenary.nvim",
-	-- Better repeat motions
-	"tpope/vim-repeat",
-	-- Set buffer options automatically
-	"tpope/vim-sleuth",
-	-- File tree
-	"nvim-tree/nvim-tree.lua",
-	-- Make things transparent
-	"xiyaowong/transparent.nvim",
-	-- Additional text objects
-	"wellle/targets.vim",
-	-- Icons for stuff
-	"nvim-tree/nvim-web-devicons",
-	-- Delete buffers peacefully
-	"famiu/bufdelete.nvim",
-	-- View colors in files
-	"NvChad/nvim-colorizer.lua",
-
-	-- Theme (have to setup at start)
-	{
-		"catppuccin/nvim",
-		name = "catppuccin",
-		lazy = false,
-	-- Gruvbox theme
-	{
-		"sainnhe/gruvbox-material",
-		priority = 1000,
-		lazy = false,
-		config = function()
-			vim.g.gruvbox_material_transparent_background = 0
-			vim.g.gruvbox_material_foreground = "mix"
-			vim.g.gruvbox_material_background = "medium"
-			vim.g.gruvbox_material_ui_contrast = "high"
-			vim.g.gruvbox_material_float_style = "bright"
-			vim.g.gruvbox_material_statusline_style = "material"
-			vim.g.gruvbox_material_better_performance = 1
-
-			vim.cmd.colorscheme("gruvbox-material")
-		end,
-	},
+	"ThePrimeagen/vim-be-good", -- Get good at vim. Duh!
+	"akinsho/toggleterm.nvim", -- Open terminals inside nvim
+	"folke/neodev.nvim", -- Better lua lsp stuff
+	"folke/zen-mode.nvim", -- Zen mode
+	"kosayoda/nvim-lightbulb", -- Highlight code actions
+	"mg979/vim-visual-multi", -- Better multi line editing
+	"mrjones2014/smart-splits.nvim", -- Navigate between splits (mainly for wezterm, and tmux)
+	"nvim-lua/plenary.nvim", -- dependency for many plugins
+	"tpope/vim-repeat", -- Better repeat motions
+	"tpope/vim-sleuth", -- Set buffer options automatically
+	"nvim-tree/nvim-tree.lua", -- File tree
+	"wellle/targets.vim", -- Additional text objects
+	"nvim-tree/nvim-web-devicons", -- Icons for stuff
+	"famiu/bufdelete.nvim", -- Delete buffers peacefully
 
 	-- Sync-edit html/jsx tags
 	{
@@ -66,6 +25,7 @@ return {
 		},
 	},
 
+	-- Better code folds
 	{
 		"kevinhwang91/nvim-ufo",
 		dependencies = {
@@ -74,6 +34,7 @@ return {
 		},
 	},
 
+	-- Highlight line indents
 	{
 		"lukas-reineke/indent-blankline.nvim",
 		main = "ibl",
