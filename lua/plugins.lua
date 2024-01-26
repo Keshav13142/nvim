@@ -37,65 +37,21 @@ return {
 		"catppuccin/nvim",
 		name = "catppuccin",
 		lazy = false,
+	-- Gruvbox theme
+	{
+		"sainnhe/gruvbox-material",
 		priority = 1000,
+		lazy = false,
 		config = function()
-			require("catppuccin").setup({
-				background = {
-					dark = "mocha",
-				},
-				color_overrides = {
-					mocha = {
-						rosewater = "#EA6962",
-						flamingo = "#EA6962",
-						pink = "#D3869B",
-						mauve = "#D3869B",
-						red = "#EA6962",
-						maroon = "#EA6962",
-						peach = "#BD6F3E",
-						yellow = "#D8A657",
-						green = "#A9B665",
-						teal = "#89B482",
-						sky = "#89B482",
-						sapphire = "#89B482",
-						blue = "#7DAEA3",
-						lavender = "#7DAEA3",
-						text = "#D4BE98",
-						subtext1 = "#BDAE8B",
-						subtext0 = "#A69372",
-						overlay2 = "#8C7A58",
-						overlay1 = "#735F3F",
-						overlay0 = "#958272",
-						surface2 = "#4B4F51",
-						surface1 = "#2A2D2E",
-						surface0 = "#232728",
-						base = "#1D2021",
-						mantle = "#191C1D",
-						crust = "#151819",
-					},
-				},
-				transparent_background = false,
-				integrations = {
-					cmp = true,
-					gitsigns = true,
-					nvimtree = true,
-					treesitter = true,
-					fidget = true,
-					mason = true,
-					telescope = true,
-					lsp_trouble = true,
-				},
-				custom_highlights = function(colors)
-					return {
-						Pmenu = { bg = colors.crust },
-						PmenuSel = { bg = colors.surface0 },
-						FloatBorder = { fg = colors.surface2 },
-						LSPInfoBorder = { fg = colors.surface2 },
-						GitSignsChange = { fg = colors.peach },
-					}
-				end,
-			})
+			vim.g.gruvbox_material_transparent_background = 0
+			vim.g.gruvbox_material_foreground = "mix"
+			vim.g.gruvbox_material_background = "medium"
+			vim.g.gruvbox_material_ui_contrast = "high"
+			vim.g.gruvbox_material_float_style = "bright"
+			vim.g.gruvbox_material_statusline_style = "material"
+			vim.g.gruvbox_material_better_performance = 1
 
-			vim.cmd.colorscheme("catppuccin")
+			vim.cmd.colorscheme("gruvbox-material")
 		end,
 	},
 

@@ -1,5 +1,3 @@
-vim.o.background = "dark"
-
 -- For neovim and nvim-tree transparency
 require("transparent").setup({
 	extra_groups = {
