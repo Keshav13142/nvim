@@ -17,18 +17,18 @@ require("mason").setup({
 })
 
 local servers = {
-	"lua_ls",
-	"cssls",
-	"html",
-	"tsserver",
-	"jsonls",
-	"yamlls",
-	"tailwindcss",
-	"gopls",
-	"pyright",
 	"bashls",
+	"cssls",
+	"gopls",
+	"html",
+	"jsonls",
+	"lua_ls",
 	"powershell_es",
+	"pyright",
 	"rust_analyzer",
+	"tailwindcss",
+	"tsserver",
+	"yamlls",
 }
 
 require("mason-lspconfig").setup({

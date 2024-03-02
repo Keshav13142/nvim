@@ -5,14 +5,14 @@ local code_actions = null_ls.builtins.code_actions
 
 local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
 
-local formatters = {}
-if vim.loop.os_uname().sysname ~= "Linux" then
-	formatters = {
-		"eslint_d",
-		"prettierd",
-		"stylua",
-	}
-end
+local formatters = {
+	"eslint_d",
+	"nixpkgs-fmt",
+	"prettierd",
+	"shellcheck",
+	"shfmt",
+	"stylua",
+}
 
 require("mason-null-ls").setup({
 	ensure_installed = formatters,
