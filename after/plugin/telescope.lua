@@ -1,11 +1,28 @@
 local telescope = require("telescope")
 local actions = require("telescope.actions")
 
+local function include_hidden()
+	return { "--hidden", "--glob", "!**/.git/*" }
+end
+
 telescope.setup({
+	defaults = {
+		file_ignore_patterns = {
+			".git/",
+			".node_modules/",
+		},
+	},
 	pickers = {
 		find_files = {
 			theme = "dropdown",
 			previewer = false,
+			hidden = true,
+		},
+		live_grep = {
+			additional_args = include_hidden,
+		},
+		grep_string = {
+			additional_args = include_hidden,
 		},
 		git_files = {
 			theme = "dropdown",
