@@ -25,6 +25,7 @@ local servers = {
 	"yamlls",
 	"tailwindcss",
 	"gopls",
+	"pyright",
 	"bashls",
 	"powershell_es",
 	"rust_analyzer",

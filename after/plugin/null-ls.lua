@@ -23,6 +23,7 @@ null_ls.setup({
 	root_dir = require("null-ls.utils").root_pattern(".null-ls-root", ".neoconf.json", "Makefile", ".git"),
 	sources = {
 		formatting.stylua,
+		formatting.black,
 		formatting.shfmt,
 		formatting.nixpkgs_fmt,
 		formatting.prettierd,
@@ -33,6 +34,7 @@ null_ls.setup({
 
 		diagnostics.eslint_d,
 		diagnostics.shellcheck,
+		diagnostics.flake8,
 		diagnostics.deadnix,
 	},
 
