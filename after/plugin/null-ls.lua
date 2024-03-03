@@ -7,7 +7,6 @@ local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
 
 local formatters = {
 	"eslint_d",
-	"flake8",
 	"nixpkgs-fmt",
 	"prettierd",
 	"shellcheck",
