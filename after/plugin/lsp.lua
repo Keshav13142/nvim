@@ -49,6 +49,8 @@ local on_attach = function(client, bufnr)
 		vim.keymap.set("n", keys, func, { buffer = bufnr, silent = true })
 	end
 
+	local builtins = require("telescope.builtin")
+
 	bufmap("<leader>r", vim.lsp.buf.rename)
 	bufmap("<leader>ca", vim.lsp.buf.code_action)
 
@@ -56,12 +58,11 @@ local on_attach = function(client, bufnr)
 	bufmap("gD", vim.lsp.buf.declaration)
 	bufmap("gI", vim.lsp.buf.implementation)
 	bufmap("<leader>D", vim.lsp.buf.type_definition)
-	-- bufmap("gr", require("telescope.builtin").lsp_references)
+	bufmap("gr", builtins.lsp_references)
 	bufmap("<leader>lr", "<cmd>lua vim.lsp.buf.references()<CR>")
 	bufmap("<leader>ld", "<cmd>lua vim.diagnostic.open_float()<CR>")
 	bufmap("<leader>lf", "<cmd>lua vim.lsp.buf.format{ async = true }<cr>")
 	bufmap("<leader>li", "<cmd>LspInfo<cr>")
-	bufmap("<leader>lI", "<cmd>LspInstallInfo<cr>")
 	bufmap("<leader>lj", "<cmd>lua vim.diagnostic.goto_next({buffer=0})<cr>")
 	bufmap("<leader>lk", "<cmd>lua vim.diagnostic.goto_prev({buffer=0})<cr>")
 	bufmap("<leader>ls", "<cmd>lua vim.lsp.buf.signature_help()<CR>")

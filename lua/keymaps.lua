@@ -126,6 +126,14 @@ lnmap("sh", telescope.help_tags)
 lnmap("sg", telescope.live_grep)
 lnmap("sd", telescope.diagnostics)
 lnmap("sb", telescope.git_branches)
+lnmap("sc", function()
+	telescope.find_files({ cmd = vim.fn.stdpath("config") })
+end)
+lnmap("/", function()
+	telescope.current_buffer_fuzzy_find(require("telescope.themes").get_dropdown({
+		previewer = false,
+	}))
+end)
 
 --  Diagnostics
 lnmap("tt", ":TroubleToggle<CR>")
@@ -136,10 +144,10 @@ lnmap("W", ":noautocmd w<CR>")
 
 -- Git
 local gs = require("gitsigns")
-lnmap("gj", function()
+nmap("[g", function()
 	gs.next_hunk({ navigation_message = false })
 end)
-lnmap("gk", function()
+nmap("]g", function()
 	gs.prev_hunk({ navigation_message = false })
 end)
 lnmap("gb", gs.blame_line)
@@ -153,3 +161,7 @@ lnmap("bc", ":BufferLinePickClose<CR>")
 lnmap("bh", ":BufferLineCloseLeft<CR>")
 lnmap("bl", ":BufferLineCloseRight<CR>")
 lnmap("bf", ":Telescope buffers previewer=false<CR>")
+
+-- Traverse diagnostics
+nmap("[d", vim.diagnostic.goto_next)
+nmap("]d", vim.diagnostic.goto_prev)
