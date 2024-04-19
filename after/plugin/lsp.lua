@@ -23,13 +23,18 @@ local servers = {
 	"html",
 	"jsonls",
 	"lua_ls",
-	"powershell_es",
 	"pyright",
 	"rust_analyzer",
 	"tailwindcss",
 	"tsserver",
 	"yamlls",
 }
+
+local is_win = vim.loop.os_uname().sysname:find("Windows") and true or false
+if is_win then
+	table.insert(servers, "powershell_es")
+	table.remove(servers, 1) -- remove bash lsp in windows
+end
 
 require("mason-lspconfig").setup({
 	ensure_installed = servers,

@@ -7,12 +7,16 @@ local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
 
 local formatters = {
 	"eslint_d",
-	"nixpkgs-fmt",
 	"prettierd",
 	"shellcheck",
-	"shfmt",
 	"stylua",
 }
+
+local is_win = vim.loop.os_uname().sysname:find("Windows") and true or false
+if not is_win then
+	table.insert(formatters, "shfmt")
+	table.insert(formatters, "nixpkgs-fmt")
+end
 
 require("mason-null-ls").setup({
 	ensure_installed = formatters,
