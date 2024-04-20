@@ -1,4 +1,4 @@
-require("options")
+require("keshav/options")
 
 -- Setup Lazy package manager
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
@@ -51,5 +51,5 @@ require("lazy").setup("plugins", {
 	},
 })
 
-require("keymaps")
-require("autocmds")
+require("keshav/keymaps")
+require("keshav/autocmds")
