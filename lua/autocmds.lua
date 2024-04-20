@@ -78,3 +78,12 @@ au({ "BufWritePre" }, {
 		vim.cmd([[ %s/\s\+$//e ]]) -- trim trailing whitespace
 	end,
 })
+
+au("FileType", {
+	pattern = { "yaml" },
+	callback = function()
+		require("ufo").detach()
+		vim.opt_local.foldenable = false
+		vim.wo.foldcolumn = "0"
+	end,
+})
