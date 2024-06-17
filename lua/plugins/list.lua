@@ -17,12 +17,16 @@ return {
 	-- Sync-edit html/jsx tags
 	{
 		"windwp/nvim-ts-autotag",
-		opts = {
-			enable = true,
-			enable_rename = true,
-			enable_close = true,
-			enable_close_on_slash = true,
-		},
+		config = function()
+			require("nvim-ts-autotag").setup({
+				opts = {
+					-- Defaults
+					enable_close = true, -- Auto close tags
+					enable_rename = true, -- Auto rename pairs of tags
+					enable_close_on_slash = false, -- Auto close on trailing </
+				},
+			})
+		end,
 	},
 
 	-- Better code folds
@@ -194,15 +198,17 @@ return {
 
 	{
 		"linux-cultist/venv-selector.nvim",
-		dependencies = { "neovim/nvim-lspconfig", "nvim-telescope/telescope.nvim", "mfussenegger/nvim-dap-python" },
-		opts = {},
-		event = "VeryLazy",
-		keys = {
-			{ "<leader>vs", "<cmd>VenvSelect<cr>" },
-			{ "<leader>vc", "<cmd>VenvSelectCached<cr>" },
+		dependencies = {
+			"neovim/nvim-lspconfig",
+			"mfussenegger/nvim-dap",
+			"mfussenegger/nvim-dap-python", --optional
 		},
+		lazy = false,
+		branch = "regexp", -- This is the regexp branch, use this for the new version
+		config = function()
+			require("venv-selector").setup()
+		end,
 	},
-
 	{
 		"iamcco/markdown-preview.nvim",
 		cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
