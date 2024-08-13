@@ -420,4 +420,13 @@ return {
 			})
 		end,
 	},
+
+	"craftzdog/solarized-osaka.nvim",
+	"gremble0/yellowbeans.nvim",
+	"folke/tokyonight.nvim",
+	"Shatur/neovim-ayu",
+	"RRethy/base16-nvim",
+	"ntk148v/komau.vim", -- Grayscale
+	"LuRsT/austere.vim", -- Grayscale
+	"NTBBloodbath/sweetie.nvim",
 }
