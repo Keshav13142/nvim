@@ -47,7 +47,7 @@ nmap("<leader><leader>", ":so<CR>")
 imap("<C-c>", "<ESC>")
 
 -- Open netrw
-lnmap("e", ":NvimTreeToggle<CR>")
+-- lnmap("e", ":NvimTreeToggle<CR>")
 
 -- save file
 keymap({ "i", "v", "n", "s" }, "<C-s>", "<ESC>:w<CR>", opts)
