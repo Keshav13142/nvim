@@ -23,6 +23,7 @@ return {
 					"javascript",
 					"json",
 					"jsonc",
+					"hyprlang",
 					"lua",
 					"markdown",
 					"markdown_inline",
