@@ -1,3 +1,5 @@
+local utils = {}
+
 local keymap = vim.keymap.set
 local opts = { noremap = true, silent = true }
 
@@ -45,9 +47,6 @@ nmap("<leader><leader>", ":so<CR>")
 
 -- Fix issues with multi line insert and <C-c>
 imap("<C-c>", "<ESC>")
-
--- Open netrw
--- lnmap("e", ":NvimTreeToggle<CR>")
 
 -- save file
 keymap({ "i", "v", "n", "s" }, "<C-s>", "<ESC>:w<CR>", opts)
@@ -97,18 +96,6 @@ nmap("<C-q>", ":qa!<CR>")
 lnmap("q", ":Bdelete<CR>")
 lnmap("Q", ":q<CR>")
 
--- Navigate splits
-local ss = require("smart-splits")
-nmap("<C-h>", ss.move_cursor_left)
-nmap("<C-j>", ss.move_cursor_down)
-nmap("<C-k>", ss.move_cursor_up)
-nmap("<C-l>", ss.move_cursor_right)
--- Resize splits
-nmap("<S-Left>", ss.resize_left)
-nmap("<S-Down>", ss.resize_down)
-nmap("<S-Up>", ss.resize_up)
-nmap("<S-Right>", ss.resize_right)
-
 -- Make current file executable
 lnmap("x", ":!chmod +x %<CR>")
 
@@ -118,51 +105,25 @@ vmap("f", ":'<,'>!sort<CR>")
 lnmap("v", ":vsp<CR>")
 lnmap("V", ":sp<CR>")
 
--- Telescope
-local telescope = require("telescope.builtin")
-lnmap("gf", telescope.git_files)
-lnmap("sf", telescope.find_files)
-lnmap("sh", telescope.help_tags)
-lnmap("sg", telescope.live_grep)
-lnmap("sd", telescope.diagnostics)
-lnmap("sb", telescope.git_branches)
-lnmap("ss", telescope.colorscheme)
-lnmap("sc", function()
-	telescope.find_files({ cmd = vim.fn.stdpath("config") })
-end)
-lnmap("/", function()
-	telescope.current_buffer_fuzzy_find(require("telescope.themes").get_dropdown({
-		previewer = false,
-	}))
-end)
-
 --  Diagnostics
-lnmap("tt", ":TroubleToggle<CR>")
-lnmap("tw", ":TroubleToggle workspace_diagnostics<CR>")
+lnmap("od", ":Trouble diagnostics<CR>") -- open diagnostics
+lnmap("st", ":Trouble<CR>") -- Trouble menu
 
 -- save without formatting
 lnmap("W", ":noautocmd w<CR>")
 
--- Git
-local gs = require("gitsigns")
-nmap("[g", function()
-	gs.next_hunk({ navigation_message = false })
-end)
-nmap("]g", function()
-	gs.prev_hunk({ navigation_message = false })
-end)
-lnmap("gb", gs.blame_line)
+-- Lazy Git
 lnmap("gg", ":lua _LAZYGIT_TOGGLE()<CR>")
-
--- Bufferline
-nmap("<S-h>", ":BufferLineCyclePrev<CR>")
-nmap("<S-l>", ":BufferLineCycleNext<CR>")
-lnmap("bb", ":BufferLinePick<CR>")
-lnmap("bc", ":BufferLinePickClose<CR>")
-lnmap("bh", ":BufferLineCloseLeft<CR>")
-lnmap("bl", ":BufferLineCloseRight<CR>")
-lnmap("bf", ":Telescope buffers previewer=false<CR>")
 
 -- Traverse diagnostics
 nmap("[d", vim.diagnostic.goto_next)
 nmap("]d", vim.diagnostic.goto_prev)
+
+utils.keymap = keymap
+utils.opts = opts
+utils.nmap = nmap
+utils.imap = imap
+utils.vmap = vmap
+utils.lnmap = lnmap
+
+return utils

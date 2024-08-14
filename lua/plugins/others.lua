@@ -3,7 +3,6 @@ return {
 	"folke/zen-mode.nvim", -- Zen mode
 	"kosayoda/nvim-lightbulb", -- Highlight code actions
 	"mg979/vim-visual-multi", -- Better multi line editing
-	"mrjones2014/smart-splits.nvim", -- Navigate between splits (mainly for wezterm, and tmux)
 	"nvim-lua/plenary.nvim", -- dependency for many plugins
 	"tpope/vim-repeat", -- Better repeat motions
 	"tpope/vim-sleuth", -- Set buffer options automatically
@@ -31,7 +30,7 @@ return {
 		main = "ibl",
 		opts = {},
 		event = { "BufReadPre", "BufNewFile" },
-		enabled = false,
+		enabled = true,
 	},
 
 	-- Comment stuff in jsx/tsx correctly
@@ -46,9 +45,6 @@ return {
 	-- Smart comments
 	{ "numToStr/Comment.nvim", opts = {} },
 
-	-- Git indication
-	{ "lewis6991/gitsigns.nvim", opts = {} },
-
 	-- Better inc/dec using C-a and C-x
 	{
 		"nat-418/boole.nvim",
@@ -56,17 +52,6 @@ return {
 			mappings = {
 				increment = "<C-a>",
 				decrement = "<C-x>",
-			},
-		},
-	},
-
-	-- Noice UI for buffers
-	{
-		"akinsho/bufferline.nvim",
-		opts = {
-			options = {
-				show_buffer_icons = false,
-				show_buffer_close_icons = false,
 			},
 		},
 	},

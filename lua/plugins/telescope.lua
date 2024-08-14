@@ -67,6 +67,25 @@ return {
 
 			telescope.load_extension("fzf")
 			telescope.load_extension("ui-select")
+
+			local lnmap = require("keshav.keymaps").lnmap
+			local builtins = require("telescope.builtin")
+
+			lnmap("gf", builtins.git_files)
+			lnmap("sf", builtins.find_files)
+			lnmap("sh", builtins.help_tags)
+			lnmap("sg", builtins.live_grep)
+			lnmap("sd", builtins.diagnostics)
+			lnmap("sb", builtins.git_branches)
+			lnmap("ss", builtins.colorscheme)
+			lnmap("sc", function()
+				builtins.find_files({ cmd = vim.fn.stdpath("config") })
+			end)
+			lnmap("/", function()
+				builtins.current_buffer_fuzzy_find(require("telescope.themes").get_dropdown({
+					previewer = false,
+				}))
+			end)
 		end,
 	},
 }
