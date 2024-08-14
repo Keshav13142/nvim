@@ -19,6 +19,7 @@ return {
 					"gitcommit",
 					"git_config",
 					"gitignore",
+					"java",
 					"javascript",
 					"json",
 					"jsonc",

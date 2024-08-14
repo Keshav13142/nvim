@@ -12,6 +12,7 @@ return {
 				end,
 			},
 			"folke/neodev.nvim", -- Better lua lsp stuff
+			"nvim-java/nvim-java",
 		},
 		config = function()
 			local capabilities = vim.lsp.protocol.make_client_capabilities()
@@ -45,6 +46,21 @@ return {
 				"tsserver",
 				"yamlls",
 			}
+
+			require("java").setup({
+				java_test = {
+					enable = true,
+				},
+				java_debug_adapter = {
+					enable = true,
+				},
+				jdk = {
+					auto_install = false,
+				},
+				notifications = {
+					dap = false,
+				},
+			})
 
 			local is_win = vim.loop.os_uname().sysname:find("Windows") and true or false
 			if is_win then
@@ -80,14 +96,20 @@ return {
 				bufmap("gI", vim.lsp.buf.implementation)
 				bufmap("<leader>D", vim.lsp.buf.type_definition)
 				bufmap("gr", builtins.lsp_references)
-				bufmap("<leader>lr", "<cmd>lua vim.lsp.buf.references()<CR>")
-				bufmap("<leader>ld", "<cmd>lua vim.diagnostic.open_float()<CR>")
-				bufmap("<leader>lf", "<cmd>lua vim.lsp.buf.format{ async = true }<cr>")
+				bufmap("<leader>lr", vim.lsp.buf.references)
+				bufmap("<leader>ld", vim.diagnostic.open_float)
+				bufmap("<leader>lf", function()
+					vim.lsp.buf.format({ async = true })
+				end)
 				bufmap("<leader>li", "<cmd>LspInfo<cr>")
-				bufmap("<leader>lj", "<cmd>lua vim.diagnostic.goto_next({buffer=0})<cr>")
-				bufmap("<leader>lk", "<cmd>lua vim.diagnostic.goto_prev({buffer=0})<cr>")
-				bufmap("<leader>ls", "<cmd>lua vim.lsp.buf.signature_help()<CR>")
-				bufmap("<leader>lq", "<cmd>lua vim.diagnostic.setloclist()<CR>")
+				bufmap("<leader>lj", function()
+					vim.diagnostic.goto_next({ buffer = 0 })
+				end)
+				bufmap("<leader>lk", function()
+					vim.diagnostic.goto_prev({ buffer = 0 })
+				end)
+				bufmap("<leader>lq", vim.diagnostic.setloclist)
+				bufmap("<leader>ls", vim.lsp.buf.signature_help)
 
 				bufmap("K", vim.lsp.buf.hover)
 
@@ -123,6 +145,25 @@ return {
 									library = {
 										[vim.fn.expand("$VIMRUNTIME/lua")] = true,
 										[vim.fn.stdpath("config") .. "/lua"] = true,
+									},
+								},
+							},
+						},
+					})
+				end,
+
+				jdtls = function()
+					require("lspconfig").jdtls.setup({
+						on_attach = on_attach,
+						settings = {
+							java = {
+								configuration = {
+									runtimes = {
+										{
+											name = "OpenJDK 21",
+											path = os.getenv("JAVA_HOME"),
+											default = true,
+										},
 									},
 								},
 							},

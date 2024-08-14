@@ -78,6 +78,7 @@ return {
 			lnmap("sd", builtins.diagnostics)
 			lnmap("sb", builtins.git_branches)
 			lnmap("ss", builtins.colorscheme)
+			lnmap("sv", builtins.lsp_dynamic_workspace_symbols)
 			lnmap("sc", function()
 				builtins.find_files({ cmd = vim.fn.stdpath("config") })
 			end)
