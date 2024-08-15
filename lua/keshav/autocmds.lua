@@ -88,16 +88,11 @@ au("FileType", {
 	end,
 })
 
--- Hyprlang LSP
+-- Disable diagnostics for Hyprland configs
 vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter" }, {
 	pattern = { "*.hl", "hypr*.conf" },
-	callback = function(event)
-		print(string.format("starting hyprls for %s", vim.inspect(event)))
-		vim.lsp.start({
-			name = "hyprlang",
-			cmd = { "hyprls" },
-			root_dir = vim.fn.getcwd(),
-		})
+	callback = function(_)
+		vim.diagnostic.disable()
 	end,
 })
 
