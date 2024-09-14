@@ -47,7 +47,7 @@ return {
 					code_actions.statix,
 					code_actions.eslint_d,
 
-					diagnostics.eslint_d,
+					-- diagnostics.eslint_d,
 					diagnostics.shellcheck,
 					diagnostics.flake8,
 					diagnostics.deadnix,
