@@ -56,18 +56,6 @@ return {
 		},
 	},
 
-	-- Additional typescript functionalities
-	{
-		"jose-elias-alvarez/typescript.nvim",
-		opts = {
-			disable_commands = false,
-			debug = false,
-			go_to_source_definition = {},
-			fallback = true,
-			server = {},
-		},
-	},
-
 	-- View nicer diagnostics
 	{
 		"folke/trouble.nvim",
