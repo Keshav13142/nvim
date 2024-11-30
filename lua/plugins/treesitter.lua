@@ -31,6 +31,7 @@ return {
 					"typescript",
 					"vimdoc",
 					"yaml",
+					"fish",
 				},
 			})
 		end,
