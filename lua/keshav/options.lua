@@ -24,7 +24,7 @@ if is_win then
 	vim.opt.shellquote = ""
 	vim.opt.shellxquote = ""
 else
-	vim.opt.shell = "zsh"
+	vim.opt.shell = os.getenv("SHELL") or "fish"
 end
 
 local options = {
