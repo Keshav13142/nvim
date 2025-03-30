@@ -19,6 +19,7 @@ return {
 			telescope.setup({
 				defaults = {
 					file_ignore_patterns = { "node_modules", ".git" },
+					-- smart_case = true,
 				},
 				pickers = {
 					find_files = {
