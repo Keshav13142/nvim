@@ -4,6 +4,7 @@ return {
 		dependencies = {
 			"williamboman/mason.nvim",
 			"williamboman/mason-lspconfig.nvim",
+			"WhoIsSethDaniel/mason-tool-installer.nvim",
 			{
 				"ray-x/lsp_signature.nvim", -- Show function signature when you type
 				event = "VeryLazy",
@@ -102,12 +103,6 @@ return {
 					vim.lsp.buf.format({ async = true })
 				end)
 				bufmap("<leader>li", "<cmd>LspInfo<cr>")
-				bufmap("<leader>lj", function()
-					vim.diagnostic.goto_next({ buffer = 0 })
-				end)
-				bufmap("<leader>lk", function()
-					vim.diagnostic.goto_prev({ buffer = 0 })
-				end)
 				bufmap("<leader>lq", vim.diagnostic.setloclist)
 				bufmap("<leader>ls", vim.lsp.buf.signature_help)
 
@@ -206,12 +201,17 @@ return {
 				},
 			})
 
-			vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
-				border = "rounded",
-			})
-
-			vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {
-				border = "rounded",
+			local mason_tool_installer = require("mason-tool-installer")
+			mason_tool_installer.setup({
+				ensure_installed = {
+					"black",
+					"eslint_d",
+					"isort",
+					"prettierd",
+					"pylint",
+					"shellcheck",
+					"stylua",
+				},
 			})
 		end,
 	},
