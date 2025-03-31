@@ -46,6 +46,7 @@ return {
 				"tailwindcss",
 				"ts_ls",
 				"yamlls",
+				"svelte",
 			}
 
 			require("java").setup({
