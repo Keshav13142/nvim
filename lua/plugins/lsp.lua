@@ -36,6 +36,7 @@ return {
 
 			local servers = {
 				"bashls",
+				"clangd",
 				"cssls",
 				"gopls",
 				"html",
@@ -43,10 +44,10 @@ return {
 				"lua_ls",
 				"pyright",
 				"rust_analyzer",
+				"svelte",
 				"tailwindcss",
 				"ts_ls",
 				"yamlls",
-				"svelte",
 			}
 
 			require("java").setup({
