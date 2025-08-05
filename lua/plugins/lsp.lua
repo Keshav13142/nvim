@@ -1,9 +1,10 @@
 return {
 	{
-		"neovim/nvim-lspconfig",
+		"mason-org/mason-lspconfig.nvim",
+		opts = {},
 		dependencies = {
-			"williamboman/mason.nvim",
-			"williamboman/mason-lspconfig.nvim",
+			{ "mason-org/mason.nvim", opts = {} },
+			"neovim/nvim-lspconfig",
 			"WhoIsSethDaniel/mason-tool-installer.nvim",
 			{
 				"ray-x/lsp_signature.nvim", -- Show function signature when you type
@@ -12,8 +13,6 @@ return {
 					require("lsp_signature").setup(opts)
 				end,
 			},
-			"folke/neodev.nvim", -- Better lua lsp stuff
-			"nvim-java/nvim-java",
 		},
 		config = function()
 			local capabilities = vim.lsp.protocol.make_client_capabilities()
@@ -50,22 +49,7 @@ return {
 				"yamlls",
 			}
 
-			require("java").setup({
-				java_test = {
-					enable = true,
-				},
-				java_debug_adapter = {
-					enable = true,
-				},
-				jdk = {
-					auto_install = false,
-				},
-				notifications = {
-					dap = false,
-				},
-			})
-
-			local is_win = vim.loop.os_uname().sysname:find("Windows") and true or false
+			local is_win = jit.os == "Windows"
 			if is_win then
 				table.insert(servers, "powershell_es")
 				table.remove(servers, 1) -- remove bash lsp in windows
@@ -118,60 +102,6 @@ return {
 			require("lspconfig").fish_lsp.setup({
 				on_attach = on_attach,
 				capabilities = capabilities,
-			})
-
-			require("mason-lspconfig").setup_handlers({
-				function(server_name)
-					require("lspconfig")[server_name].setup({
-						on_attach = on_attach,
-						capabilities = capabilities,
-					})
-				end,
-
-				["lua_ls"] = function()
-					require("neodev").setup()
-					require("lspconfig").lua_ls.setup({
-						on_attach = on_attach,
-						capabilities = capabilities,
-						settings = {
-							Lua = {
-								telemetry = { enable = false },
-								format = {
-									enable = false,
-								},
-								diagnostics = {
-									globals = { "vim" },
-								},
-								workspace = {
-									checkThirdParty = false,
-									library = {
-										[vim.fn.expand("$VIMRUNTIME/lua")] = true,
-										[vim.fn.stdpath("config") .. "/lua"] = true,
-									},
-								},
-							},
-						},
-					})
-				end,
-
-				jdtls = function()
-					require("lspconfig").jdtls.setup({
-						on_attach = on_attach,
-						settings = {
-							java = {
-								configuration = {
-									runtimes = {
-										{
-											name = "OpenJDK 21",
-											path = os.getenv("JAVA_HOME"),
-											default = true,
-										},
-									},
-								},
-							},
-						},
-					})
-				end,
 			})
 
 			vim.diagnostic.config({
