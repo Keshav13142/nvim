@@ -1,6 +1,4 @@
 return {
-	"catppuccin/nvim",
-	"folke/tokyonight.nvim",
 	"RRethy/base16-nvim",
 	"sainnhe/gruvbox-material",
 
@@ -14,6 +12,7 @@ return {
 	-- Make things transparent
 	{
 		"xiyaowong/transparent.nvim",
+		enabled = false,
 		config = function()
 			require("transparent").setup({
 				extra_groups = {

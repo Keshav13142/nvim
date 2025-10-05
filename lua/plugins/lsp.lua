@@ -60,6 +60,27 @@ return {
 				automatic_installation = false,
 			})
 
+			vim.lsp.config("lua_ls", {
+				settings = {
+					Lua = {
+						telemetry = { enable = false },
+						format = {
+							enable = false,
+						},
+						diagnostics = {
+							globals = { "vim" },
+						},
+						workspace = {
+							checkThirdParty = false,
+							library = {
+								[vim.fn.expand("$VIMRUNTIME/lua")] = true,
+								[vim.fn.stdpath("config") .. "/lua"] = true,
+							},
+						},
+					},
+				},
+			})
+
 			local on_attach = function(client, bufnr)
 				if client.name == "ts_ls" then
 					client.server_capabilities.documentFormattingProvider = false

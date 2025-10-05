@@ -53,3 +53,5 @@ require("lazy").setup("plugins", {
 
 require("keshav/keymaps")
 require("keshav/autocmds")
+
+vim.cmd("colorscheme gruvbox-material")

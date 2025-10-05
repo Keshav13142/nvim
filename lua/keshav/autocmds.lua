@@ -92,7 +92,7 @@ au("FileType", {
 vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter" }, {
 	pattern = { "*.hl", "hypr*.conf" },
 	callback = function(_)
-		vim.diagnostic.disable()
+		vim.diagnostic.enable(false)
 	end,
 })
 
