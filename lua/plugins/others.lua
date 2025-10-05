@@ -1,7 +1,6 @@
 return {
 	"ThePrimeagen/vim-be-good", -- Get good at vim. Duh!
 	"folke/zen-mode.nvim", -- Zen mode
-	"kosayoda/nvim-lightbulb", -- Highlight code actions
 	"mg979/vim-visual-multi", -- Better multi line editing
 	"nvim-lua/plenary.nvim", -- dependency for many plugins
 	"tpope/vim-repeat", -- Better repeat motions
@@ -12,16 +11,7 @@ return {
 	-- Sync-edit html/jsx tags
 	{
 		"windwp/nvim-ts-autotag",
-		config = function()
-			require("nvim-ts-autotag").setup({
-				opts = {
-					-- Defaults
-					enable_close = true, -- Auto close tags
-					enable_rename = true, -- Auto rename pairs of tags
-					enable_close_on_slash = false, -- Auto close on trailing </
-				},
-			})
-		end,
+		opts = {},
 	},
 
 	-- Highlight line indents
@@ -81,19 +71,6 @@ return {
 		},
 	},
 
-	{
-		"linux-cultist/venv-selector.nvim",
-		dependencies = {
-			"neovim/nvim-lspconfig",
-			"mfussenegger/nvim-dap",
-			"mfussenegger/nvim-dap-python", --optional
-		},
-		lazy = false,
-		branch = "regexp", -- This is the regexp branch, use this for the new version
-		config = function()
-			require("venv-selector").setup({})
-		end,
-	},
 	{
 		"iamcco/markdown-preview.nvim",
 		cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },

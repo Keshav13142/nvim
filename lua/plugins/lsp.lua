@@ -47,6 +47,7 @@ return {
 				"tailwindcss",
 				"ts_ls",
 				"yamlls",
+				"fish_lsp",
 			}
 
 			local is_win = jit.os == "Windows"
@@ -120,7 +121,8 @@ return {
 				end, {})
 			end
 
-			require("lspconfig").fish_lsp.setup({
+			vim.lsp.config("fish_lsp", {
+				cmd = { "fish-lsp", "start" },
 				on_attach = on_attach,
 				capabilities = capabilities,
 			})
